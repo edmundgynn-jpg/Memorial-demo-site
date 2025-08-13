@@ -5,38 +5,54 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>David Gynn Memorials — Demo</title>
 
-  <!-- Lora from Google (if offline, browser will use fallback) -->
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Lora (body) + Cinzel (headings) -->
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#ececea;            /* slightly darker than before so stone pops */
-      --dark:#152820;          /* deep green text */
+      --bg:#efefee;            /* slightly darker background so stone pops */
+      --dark:#152820;          /* deep green */
       --slate:#33373a;         /* dark slate button base */
-      --stone:#cfcfca;         /* light headstone color (a touch darker) */
+      --stone:#d6d4ce;         /* light headstone color */
       --muted:#6f7a73;
-      --accent:#7f9a7d;        /* banner green—one shade lighter than before */
-      --accent-deep:#0f1c18;
+      --accent:#6b7f6a;
       --max-width:980px;
+      --outline:#2b2b2b;       /* kept similar to before for crisp outlines */
+      --banner:#1c3a2e;        /* earthy green banner (kept, just a hair lighter) */
+      --banner-light:#204536;
     }
     *{box-sizing:border-box}
-    body{font-family:'Lora', serif; background:var(--bg); color:var(--dark); margin:0; -webkit-font-smoothing:antialiased}
+    body{
+      font-family:'Lora', serif;
+      background:var(--bg);
+      color:var(--dark);
+      margin:0;
+      -webkit-font-smoothing:antialiased
+    }
+    h1,h2,h3{font-family:'Cinzel', serif; letter-spacing:.3px}
     .container{max-width:var(--max-width); margin:0 auto; padding:18px}
-    header{background:linear-gradient(180deg,var(--accent), #6d846c); color:#fff; padding:14px 0; position:relative}
+
+    /* HEADER */
+    header{
+      background:linear-gradient(180deg,var(--banner), var(--banner-light));
+      color:#fff; padding:14px 0; position:relative
+    }
     .header-inner{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:0 18px}
     .brand{font-weight:700; font-size:18px}
-    .nav{display:flex; gap:12px}
-    .nav button{background:transparent;color:rgba(255,255,255,0.95);border:0;padding:8px 10px;border-radius:6px;cursor:pointer;font-size:15px}
-    .nav button.active{background:rgba(255,255,255,0.10)}
+    .nav{display:flex; gap:12px; justify-content:center; flex:1}
+    .nav button{
+      background:transparent;color:rgba(255,255,255,0.92);border:0;padding:8px 10px;border-radius:6px;cursor:pointer;font-size:15px
+    }
+    .nav button.active{background:rgba(255,255,255,0.08)}
     .rope-strip{height:34px; opacity:0.16; background-repeat:repeat-x; background-position:center; background-size:auto 34px}
 
+    /* MAIN */
     main{padding:28px 18px}
     .hero{max-width:900px;margin:0 auto;text-align:center;padding:6px 0 18px}
     .hero h1{font-size:28px;margin:6px 0 8px}
-    .lead{color:#e7e7e7;max-width:760px;margin:0 auto 14px}
+    .lead{color:#e7e6e2;max-width:760px;margin:0 auto 14px}
     .cta-wrap{margin-top:18px}
 
-    /* Quote button */
     .quote-button{
       display:inline-flex;align-items:center;gap:12px;background:var(--slate);color:white;border:0;padding:12px 18px;border-radius:10px;cursor:pointer;
       box-shadow:0 8px 20px rgba(19,23,22,0.18);
@@ -52,7 +68,7 @@
     .value-card h3{margin:0 0 6px}
     .value-card p{margin:0;color:var(--muted)}
 
-    /* cards */
+    /* cards and sections */
     .card-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:22px}
     .card{background:white;padding:14px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.06);min-width:200px;max-width:320px;text-align:left}
 
@@ -60,7 +76,7 @@
     .page{display:none}
     .page.active{display:block}
 
-    /* rules blocks */
+    /* memorial rules layout */
     .rules{display:flex;gap:12px;flex-wrap:wrap}
     .rule-block{flex:1;min-width:210px;background:#fff;padding:14px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
 
@@ -72,84 +88,51 @@
     footer{background:white;padding:18px 0;margin-top:28px}
     footer .container{display:flex;flex-direction:column;align-items:center;gap:8px}
 
-    /* CONTACT LAYOUT */
-    .contact-top{
-      position:relative;
+    /* Contact page custom layout */
+    .contact-top {
       display:grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap:16px;
+      grid-template-columns: 1.2fr .9fr;
+      gap:18px;
       align-items:start;
     }
     .castle-wrap{
+      width:100%;
+      aspect-ratio: 16/10;
+      border-radius:12px;
+      overflow:hidden;              /* hard clip so zoom never bleeds */
       position:relative;
-      min-height:180px;
-      overflow:visible;
+      background:linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,.06));
+      box-shadow:0 8px 20px rgba(0,0,0,0.06) inset;
     }
-    .castle-bg{
-      position:absolute;
-      right:-10px;
-      top:-20px;
-      width:340px;
-      height:auto;
-      opacity:0.12;              /* subtle watermark look */
-      z-index:-1;
-      filter:drop-shadow(0 2px 2px rgba(0,0,0,0.05));
-      animation:floaty 8s ease-in-out infinite;
+    .castle-svg{
+      position:absolute; inset:0;
+      opacity:.35;                   /* semi-transparent per your request */
     }
-    @keyframes floaty{
-      0%   { transform: translateY(0px) }
-      50%  { transform: translateY(6px) }
-      100% { transform: translateY(0px) }
-    }
-
-    .contact-panels{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:16px;
-      margin-top:12px;
-    }
-
+    .castle-svg path{stroke:var(--outline); stroke-width:1.2; fill:#000}
     .panel{
-      background:#fff;
-      border-radius:10px;
-      box-shadow:0 6px 18px rgba(0,0,0,0.04);
-      padding:14px;
+      background:#fff;padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.04)
+    }
+    .map-ph{
+      height:220px;border-radius:10px;background:linear-gradient(180deg,#e9e9e9,#f4f4f4);
+      display:flex;align-items:center;justify-content:center;color:#666;font-style:italic
     }
 
-    /* simple map placeholder */
-    .map-box{
-      aspect-ratio: 4 / 3;
-      background:linear-gradient(180deg,#f5f5f5,#fafafa);
-      border:1px solid #ddd;
-      border-radius:10px;
-      position:relative;
-      overflow:hidden;
+    /* Ogee envelope CTA */
+    .ogee-cta{
+      margin-top:20px; display:flex; justify-content:center
     }
-    .map-box svg{position:absolute; inset:0; width:100%; height:100%}
-
-    /* info list */
-    .info-list{margin:0; padding-left:18px}
-    .info-list li{margin:4px 0}
-
-    /* FAQ */
-    details{
-      background:#fff;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.04);padding:10px 12px;margin:8px 0
+    .ogee-button{
+      background:var(--slate); color:#fff; border:0; border-radius:12px; padding:12px 16px;
+      display:flex; align-items:center; gap:14px; cursor:pointer; box-shadow:0 8px 20px rgba(0,0,0,.16)
     }
-    summary{cursor:pointer;font-weight:700}
+    .ogee-svg{width:120px; height:96px}
+    .ogee-body{fill:var(--stone); stroke:var(--outline); stroke-width:1}
+    .ogee-flap-top, .ogee-flap-bottom{fill:rgba(0,0,0,.08); stroke:var(--outline); stroke-width:.9; transform-origin:50% 50%}
+    .ogee-outline{fill:none; stroke:var(--outline); stroke-width:1}
 
-    /* Headstone-envelope (bottom feature) */
-    .contact-bottom{
-      display:flex;justify-content:center;margin-top:14px
-    }
-    .fold-cta{
-      display:inline-flex;align-items:center;gap:10px;background:var(--slate);color:#fff;border:0;padding:10px 14px;border-radius:10px;cursor:pointer;
-      box-shadow:0 8px 20px rgba(19,23,22,0.18); font-weight:700;
-    }
-    .fold-cta svg{width:72px;height:72px;flex:0 0 72px}
-
-    /* Headstone styling: darker pinstripe outline */
-    .stone-outline{ stroke:#2a2a2a; stroke-width:2; }
-    .stone-outline-thin{ stroke:#2a2a2a; stroke-width:1.4; }
+    /* hover fold (pure CSS) */
+    .ogee-button:hover .ogee-flap-top{ transform: rotateX(155deg); transition: transform 900ms cubic-bezier(.2,.7,.2,1) }
+    .ogee-button:hover .ogee-flap-bottom{ transform: translateY(-18px) rotateX(-165deg); transition: transform 900ms cubic-bezier(.2,.7,.2,1) }
 
     /* responsive */
     @media(min-width:880px){
@@ -157,10 +140,9 @@
       .values-grid{grid-template-columns:repeat(4,1fr)}
       .nav{gap:18px}
     }
-    @media(max-width:860px){
-      .contact-top{ grid-template-columns:1fr }
-      .castle-bg{right:0; width:60vw; opacity:0.10}
-      .contact-panels{grid-template-columns:1fr}
+    @media(max-width:820px){
+      .contact-top{grid-template-columns:1fr}
+      .castle-wrap{order:-1}
     }
     @media(max-width:720px){
       .values-grid{grid-template-columns:1fr}
@@ -172,7 +154,7 @@
     .muted{color:var(--muted);font-size:14px}
     a{color:var(--dark);text-decoration:none}
     .center{text-align:center}
-    hr{border:none;height:1px;background:rgba(0,0,0,0.05);margin:18px 0}
+    hr{border:none;height:1px;background:rgba(0,0,0,0.04);margin:18px 0}
     .img-placeholder{background:linear-gradient(180deg,#e9e9e9,#f4f4f4);border-radius:8px;padding:36px 24px;color:#888}
   </style>
 </head>
@@ -191,7 +173,7 @@
     <div class="rope-strip" id="ropeStrip"></div>
   </header>
 
-  <!-- MAIN CONTENT (single-file SPA) -->
+  <!-- MAIN CONTENT -->
   <main>
     <div class="container">
 
@@ -204,17 +186,15 @@
           <div class="cta-wrap">
             <button class="quote-button" id="quoteBtn" aria-label="Get a Quote">
               <svg viewBox="0 0 200 200" id="stoneSVG" role="img" aria-hidden="true">
-                <!-- ogee headstone -->
-                <path class="stone-outline" id="stonePath" d="M30 160 L30 110 C30 92 50 70 80 66 C92 64 108 64 120 66 C150 70 170 92 170 110 L170 160 Z" fill="var(--stone)"/>
-                <!-- base -->
-                <rect class="stone-outline-thin" x="55" y="140" width="90" height="10" fill="rgba(0,0,0,0.06)"></rect>
+                <path d="M30 160 L30 110 C30 92 54 68 100 68 C146 68 170 92 170 110 L170 160 Z" fill="var(--stone)" stroke="#cfcfcf" stroke-width="2"/>
+                <rect x="55" y="140" width="90" height="10" fill="rgba(0,0,0,0.06)"></rect>
               </svg>
               <span class="btn-text">Get a Quote</span>
             </button>
           </div>
 
           <div class="values">
-            <div class="values-grid" aria-hidden="false">
+            <div class="values-grid">
               <div class="value-card center"><h3>Customer Centricity</h3><p>We listen first — every memorial reflects the family it’s for.</p></div>
               <div class="value-card center"><h3>Compassion</h3><p>We understand this isn’t just stonework — we’re here to help, not rush.</p></div>
               <div class="value-card center"><h3>Quality</h3><p>Meticulous craftsmanship, lasting beauty.</p></div>
@@ -239,7 +219,7 @@
         </div>
       </section>
 
-      <!-- MEMORIALS PAGE -->
+      <!-- MEMORIALS -->
       <section id="memorials" class="page">
         <h1>Memorials</h1>
         <p class="muted">Examples, local rules, and guidance for memorials in Devon & Cornwall.</p>
@@ -272,7 +252,7 @@
         <div class="bottom-cta"><button class="quote-small" id="quoteBtn2">Get a Quote</button></div>
       </section>
 
-      <!-- SERVICES PAGE -->
+      <!-- SERVICES -->
       <section id="services" class="page">
         <h1>Stones & Services</h1>
         <section>
@@ -303,113 +283,146 @@
         <div class="bottom-cta"><button class="quote-small" id="quoteBtn3">Get a Quote</button></div>
       </section>
 
-      <!-- CONTACT PAGE -->
+      <!-- CONTACT -->
       <section id="contact" class="page">
+        <h1>Contact</h1>
+
         <div class="contact-top">
+          <!-- Info + panels -->
           <div>
-            <h1 style="position:relative; z-index:1">Contact</h1>
-            <p class="muted">Quick quote requests work best with a photo and a short description.</p>
-          </div>
-          <div class="castle-wrap" aria-hidden="true">
-            <!-- Subtle castle background animation (vector silhouette-style) -->
-            <svg class="castle-bg" viewBox="0 0 600 400" role="img" aria-label="Castle silhouette">
-              <defs>
-                <linearGradient id="cGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stop-color="#1c2d24"/>
-                  <stop offset="1" stop-color="#1c2d24"/>
-                </linearGradient>
-              </defs>
-              <!-- rough traced silhouette—clean and subtle -->
-              <path d="M40,300 L120,240 L220,240 L260,210 L300,230 L360,170 L420,180 L460,160 L500,190 L560,175 L560,320 L40,320 Z"
-                    fill="url(#cGrad)" opacity="0.8"/>
-              <!-- light inner stipple strokes (very subtle) -->
-              <path d="M80,285 C120,270 160,270 200,260 M230,250 C260,245 290,240 320,220 M360,200 C390,195 420,190 450,185"
-                    stroke="#0a0f0d" stroke-opacity="0.25" stroke-width="4" fill="none" stroke-linecap="round"/>
-            </svg>
-          </div>
-        </div>
+            <div class="panel" style="margin-bottom:12px">
+              <p><strong>Quick quote:</strong> attach a photo and a short description. The button below opens your email with a template.</p>
+            </div>
 
-        <div class="contact-panels">
-          <div class="panel">
-            <h3>Get in touch</h3>
-            <ul class="info-list">
-              <li><strong>Email (example):</strong> test@example.com</li>
-              <li><strong>Phone:</strong> 01234 567890</li>
-            </ul>
-            <p class="muted">Use the “Send Email” headstone below to open a pre-filled message.</p>
-          </div>
+            <div class="panel" style="margin-bottom:12px">
+              <p><strong>Example email (testing):</strong> test@example.com</p>
+              <p class="muted">Phone: 01234 567890 (placeholder)</p>
+            </div>
 
-          <div class="panel">
-            <h3>Map (placeholder)</h3>
-            <div class="map-box" aria-hidden="true">
-              <!-- Pure SVG map placeholder (no services) -->
-              <svg viewBox="0 0 400 300" preserveAspectRatio="none">
-                <rect x="0" y="0" width="400" height="300" fill="#f8f8f8"/>
-                <path d="M40,220 L120,160 L220,170 L260,150 L320,180 L360,140" fill="none" stroke="#c7c7c7" stroke-width="8" stroke-linecap="round"/>
-                <circle cx="260" cy="150" r="8" fill="#888"/>
-                <text x="20" y="24" font-size="14" fill="#777">Example Map Area</text>
-                <rect x="20" y="250" width="140" height="28" rx="6" ry="6" fill="#e9e9e9" stroke="#ddd"/>
-                <text x="30" y="268" font-size="12" fill="#666">Directions placeholder</text>
-              </svg>
+            <div class="panel">
+              <div class="map-ph">Simple Map Placeholder</div>
             </div>
           </div>
 
-          <div class="panel">
-            <h3>Did you know?</h3>
-            <p class="muted">Churchyard rules vary by parish. We confirm local requirements before any work begins.</p>
-          </div>
+          <!-- Castle animation -->
+          <div class="castle-wrap" aria-hidden="true">
+            <svg class="castle-svg" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <!-- soft vignette mask to keep edges neat while zooming -->
+                <radialGradient id="fade" cx="50%" cy="40%" r="75%">
+                  <stop offset="80%" stop-color="white"/>
+                  <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                </radialGradient>
+                <mask id="softMask">
+                  <rect x="0" y="0" width="100%" height="100%" fill="url(#fade)"/>
+                </mask>
+              </defs>
 
-          <div class="panel">
-            <h3>Commonly Asked Questions</h3>
-            <details>
-              <summary>Can you repaint faded lettering?</summary>
-              <p>Yes — where the stone accepts repainting we can refresh it to match the original intent.</p>
-            </details>
-            <details>
-              <summary>What materials do you recommend?</summary>
-              <p>Delabole or Welsh slate for tradition and durability; granite for some cemetery settings.</p>
-            </details>
-            <details>
-              <summary>Do you advise on parish rules?</summary>
-              <p>Absolutely. We check with your parish and guide you through permitted sizes and finishes.</p>
-            </details>
+              <!-- group that we scale -->
+              <g id="castleZoom" transform="translate(500,350)" mask="url(#softMask)">
+                <g id="castleArt">
+                  <!-- Simplified vector “ruin” (stylised, license-free). 
+                       If you later have traced paths, replace inside this <g>. -->
+                  <path d="M-360,120
+                           C-320,40 -290,30 -250,20
+                           L-240,-60 L-120,-90 L-110,0
+                           C-70,-20 0,-60 40,-40
+                           L60,-120 L160,-110 L150,0
+                           C210,10 240,40 270,100
+                           L300,140 L260,165 L220,150
+                           C160,130 80,150 40,180
+                           C-40,240 -140,240 -220,200
+                           C-260,180 -320,170 -360,150 Z"/>
+                  <path d="M-220,-10 h60 v70 h-60 Z"/>
+                  <path d="M40,-30 h70 v85 h-70 Z"/>
+                  <path d="M-90,-50 h70 v100 h-70 Z"/>
+                </g>
+              </g>
+
+              <!-- 30s smooth zoom 1→2→1, infinite -->
+              <animateTransform
+                xlink:href="#castleZoom"
+                attributeName="transform"
+                attributeType="XML"
+                type="translate"
+                values="500,350;500,350;500,350"
+                dur="30s"
+                repeatCount="indefinite"/>
+              <animateTransform
+                xlink:href="#castleZoom"
+                attributeName="transform"
+                attributeType="XML"
+                type="scale"
+                values="1;2;1"
+                dur="30s"
+                repeatCount="indefinite"
+                additive="sum"/>
+            </svg>
           </div>
         </div>
 
-        <!-- Bottom feature: headstone → envelope (hover folds; click opens mail) -->
-        <div class="contact-bottom">
-          <button class="fold-cta" id="contactFoldBtn" aria-label="Send Email">
-            <svg viewBox="0 0 220 180" id="stoneContact" role="img" aria-hidden="true">
-              <!-- Headstone front (ogee) -->
-              <path class="stone-outline" id="stoneContactFront"
-                    d="M30 150 L30 88 C30 72 52 52 95 48 C112 46 138 46 155 48 C198 52 210 72 210 88 L210 150 Z"
-                    fill="var(--stone)"/>
-              <!-- Base (forms envelope flap underfold) -->
-              <rect class="stone-outline-thin" x="58" y="130" width="124" height="12" fill="rgba(0,0,0,0.06)"></rect>
+        <!-- FAQs + Did you know -->
+        <div style="display:grid;grid-template-columns:1fr 1fr; gap:12px; margin-top:14px">
+          <div class="panel">
+            <h3>Did you know?</h3>
+            <p class="muted">Many parishes in Devon & Cornwall have different rules for finishes and sizes. We check your parish before any work begins.</p>
+          </div>
+          <div class="panel">
+            <h3>Common Questions</h3>
+            <ul class="muted" style="margin-top:0">
+              <li>How long does an application take?</li>
+              <li>What stones are permitted locally?</li>
+              <li>Can you repaint existing lettering?</li>
+            </ul>
+          </div>
+        </div>
 
-              <!-- Envelope state (hidden initially) -->
-              <g id="envelopeGroup" transform="translate(0,0) scale(1)" opacity="0">
-                <rect x="40" y="90" width="160" height="70" rx="6" fill="#ffffff" stroke="#2a2a2a" stroke-width="2"/>
-                <path d="M40 90 L120 130 L200 90" fill="none" stroke="#2a2a2a" stroke-width="2"/>
-                <!-- bottom base as under-fold triangle -->
-                <path d="M40 160 L120 120 L200 160 Z" fill="#f2f2f2" stroke="#2a2a2a" stroke-width="1.6"/>
-              </g>
+        <!-- Ogee headstone → envelope CTA -->
+        <div class="ogee-cta">
+          <button class="ogee-button" id="ogeeEmailBtn" aria-label="Email quote">
+            <svg class="ogee-svg" viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Back/body with ogee top -->
+              <path class="ogee-body" d="
+                M20,160 L20,50
+                C20,35 50,20 120,20
+                C190,20 220,35 220,50
+                L220,160 Z"/>
+              <!-- top ogee flap (folds down on hover) -->
+              <path class="ogee-flap-top" style="transform-origin:120px 48px" d="
+                M20,50
+                C20,35 50,20 120,20
+                C190,20 220,35 220,50
+                L220,52
+                C190,42 160,38 120,38
+                C80,38 50,42 20,52 Z"/>
+              <!-- bottom flap (rises like envelope under-fold) -->
+              <path class="ogee-flap-bottom" style="transform-origin:120px 120px" d="
+                M20,160 L120,100 L220,160 Z"/>
+              <!-- outline for clarity -->
+              <path class="ogee-outline" d="
+                M20,160 L20,50
+                C20,35 50,20 120,20
+                C190,20 220,35 220,50
+                L220,160 Z"/>
             </svg>
-            <span>Send Email</span>
+            <span class="btn-text">Email a Quote</span>
           </button>
         </div>
 
         <div class="bottom-cta"><button class="quote-small" id="quoteBtn4">Get a Quote</button></div>
       </section>
 
-    </div> <!-- container -->
+    </div>
   </main>
 
-  <!-- fixed mobile bottom CTA -->
+  <!-- fixed mobile bottom CTA (small screens) -->
   <div class="mobile-bottom-cta" style="display:none" id="mobileCtaWrap">
-    <button class="quote-button" id="mobileQuoteBtn"><svg viewBox="0 0 200 200" aria-hidden="true">
-      <path class="stone-outline" d="M30 160 L30 110 C30 92 50 70 80 66 C92 64 108 64 120 66 C150 70 170 92 170 110 L170 160 Z" fill="var(--stone)"/>
-    </svg><span class="btn-text">Get a Quote</span></button>
+    <button class="quote-button" id="mobileQuoteBtn">
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <path d="M30 160 L30 110 C30 92 54 68 100 68 C146 68 170 92 170 110 L170 160 Z" fill="var(--stone)" stroke="#cfcfcf" stroke-width="2"/>
+      </svg>
+      <span class="btn-text">Get a Quote</span>
+    </button>
   </div>
 
   <!-- FOOTER -->
@@ -423,7 +436,7 @@
 
   <!-- Inline scripts -->
   <script>
-    // --- Rope strip asset (inline svg background) ---
+    // Rope SVG strip
     (function injectRope(){
       var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 60"><path d="M0 30 C40 0 120 0 160 30 C200 60 280 60 320 30 C360 0 440 0 480 30 C520 60 600 60 640 30 C680 0 760 0 800 30 C840 60 920 60 960 30 C1000 0 1080 0 1120 30 C1160 60 1200 60 1240 30" stroke="%236b7f6a" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
       var enc = 'data:image/svg+xml;utf8,'+encodeURIComponent(svg);
@@ -433,11 +446,11 @@
       if(el2) el2.style.backgroundImage = 'url("' + enc + '")';
     })();
 
-    // --- SPA navigation ---
+    // SPA nav
     (function navSetup(){
       var buttons = document.querySelectorAll('.nav button');
       function show(page){
-        document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+        document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
         var el = document.getElementById(page);
         if(el) el.classList.add('active');
         buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.page===page));
@@ -447,21 +460,19 @@
       }
       buttons.forEach(function(btn){
         btn.addEventListener('click', function(e){
-          e.preventDefault();
-          show(btn.dataset.page);
+          e.preventDefault(); show(btn.dataset.page);
         });
       });
       document.querySelectorAll('[data-page-link]').forEach(function(a){
         a.addEventListener('click', function(e){
-          e.preventDefault();
-          show(a.dataset.pageLink);
+          e.preventDefault(); show(a.dataset.pageLink);
         });
       });
       show('home');
       document.getElementById('year').textContent = new Date().getFullYear();
     })();
 
-    // --- Quote button: smooth fold then mailto ---
+    // Quote buttons + simple stone tilt on Home
     (function quoteSetup(){
       var mailTo = 'test@example.com';
       var subject = encodeURIComponent('Quote Request – David Gynn Memorials');
@@ -469,17 +480,17 @@
       function openMail(){ window.location.href = 'mailto:'+mailTo+'?subject='+subject+'&body='+bodyTemplate; }
 
       function animateAndSend(svgElement){
-        svgElement.style.transition = 'transform 1.2s cubic-bezier(.2,.7,.2,1), opacity 1.2s';
+        svgElement.style.transition = 'transform 1.4s cubic-bezier(.2,.7,.2,1), opacity 1.4s';
         svgElement.style.transformOrigin = '50% 35%';
         svgElement.style.transform = 'rotateX(22deg) translateY(6px) scale(0.96)';
-        svgElement.style.opacity = '0.94';
+        svgElement.style.opacity = '0.92';
         setTimeout(function(){
           openMail();
           setTimeout(function(){
             svgElement.style.transform = '';
             svgElement.style.opacity = '';
           }, 900);
-        }, 1200);
+        }, 1350);
       }
 
       var primary = document.getElementById('quoteBtn');
@@ -488,60 +499,27 @@
       ['quoteBtn2','quoteBtn3','quoteBtn4','mobileQuoteBtn'].forEach(function(id){
         var b = document.getElementById(id);
         if(!b) return;
-        b.addEventListener('click', function(e){ e.preventDefault(); animateAndSend(stoneSVG); });
+        b.addEventListener('click', function(e){ e.preventDefault(); openMail(); });
       });
+
+      // Ogee envelope button also sends email on click
+      var ogeeBtn = document.getElementById('ogeeEmailBtn');
+      if(ogeeBtn){ ogeeBtn.addEventListener('click', function(e){ e.preventDefault(); openMail(); }); }
     })();
 
-    // --- Contact page: hover-fold → envelope, click to email ---
-    (function contactFold(){
-      var btn = document.getElementById('contactFoldBtn');
-      var front = document.getElementById('stoneContactFront');
-      var env = document.getElementById('envelopeGroup');
-
-      // smooth transitions
-      [front, env].forEach(function(el){
-        el.style.transition = 'transform 700ms cubic-bezier(.25,.8,.25,1), opacity 700ms';
-        el.style.transformOrigin = '50% 60%';
-      });
-
-      // hover: fold open
-      btn.addEventListener('mouseenter', function(){
-        front.style.transform = 'rotateX(82deg) translateY(12px)';
-        front.style.opacity = '0';
-        env.style.opacity = '1';
-        env.style.transform = 'translateY(-6px)';
-      });
-      // leave: fold back
-      btn.addEventListener('mouseleave', function(){
-        front.style.transform = '';
-        front.style.opacity = '1';
-        env.style.opacity = '0';
-        env.style.transform = '';
-      });
-
-      // click: open email
-      btn.addEventListener('click', function(e){
-        e.preventDefault();
-        var mailTo = 'test@example.com';
-        var subject = encodeURIComponent('Contact – David Gynn Memorials');
-        var body = encodeURIComponent('Hello,%0D%0A%0D%0AI would like to enquire about...%0D%0A%0D%0A(Please attach any images if relevant.)');
-        window.location.href = 'mailto:'+mailTo+'?subject='+subject+'&body='+body;
-      });
-    })();
-
-    // Accessibility: keyboard trigger for main CTA
+    // Keyboard a11y for buttons
     (function a11y(){
       document.addEventListener('keydown', function(e){
         if(e.key==='Enter'){
           var active = document.activeElement;
-          if(active && active.classList && (active.classList.contains('quote-button') || active.id==='contactFoldBtn')){
+          if(active && active.classList && (active.classList.contains('quote-button') || active.classList.contains('ogee-button'))){
             active.click();
           }
         }
       });
     })();
 
-    // Mobile CTA visibility
+    // Responsive mobile CTA visible only on small screens
     (function mobileCtaShow(){
       function update(){
         var wrap = document.getElementById('mobileCtaWrap');
