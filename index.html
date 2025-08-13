@@ -10,44 +10,33 @@
 
   <style>
     :root{
-      --bg:#ececea;             /* slightly darker page background so stone stands out */
-      --dark:#152820;           /* deep green text */
-      --slate:#33373a;          /* dark slate button base */
-      --stone:#bfbcb6;          /* light headstone color */
-      --stone2:#a9a7a3;         /* darker upper piece */
+      --bg:#ececea;            /* slightly darker than before so stone pops */
+      --dark:#152820;          /* deep green text */
+      --slate:#33373a;         /* dark slate button base */
+      --stone:#cfcfca;         /* light headstone color (a touch darker) */
       --muted:#6f7a73;
-      --accent:#7f927e;         /* lighter earthy-green for the banner */
-      --accent-deep:#6b7f6a;
+      --accent:#7f9a7d;        /* banner green—one shade lighter than before */
+      --accent-deep:#0f1c18;
       --max-width:980px;
     }
     *{box-sizing:border-box}
     body{font-family:'Lora', serif; background:var(--bg); color:var(--dark); margin:0; -webkit-font-smoothing:antialiased}
     .container{max-width:var(--max-width); margin:0 auto; padding:18px}
-
-    /* ===== Header / Banner (kept, just tuned colors + centered nav) ===== */
-    header{background:linear-gradient(180deg,var(--accent), #6f846e); color:#fff; padding:0; position:relative}
-    .topbar{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 18px}
-    .brand{display:flex; align-items:center; gap:10px}
-    .brand .logo{
-      width:42px;height:42px;border-radius:10px;background:rgba(255,255,255,0.18);
-      display:grid;place-items:center;font-weight:700;color:white;letter-spacing:0.5px;
-      box-shadow:inset 0 0 0 2px rgba(255,255,255,0.22);
-    }
-    .brand .name{font-weight:700; font-size:18px; color:#fff}
-    .nav{display:flex; gap:18px; justify-content:center; align-items:center; flex:1}
-    .nav button{background:transparent;color:rgba(255,255,255,0.95);border:0;padding:8px 12px;border-radius:8px;cursor:pointer;font-size:15px}
-    .nav button.active{background:rgba(255,255,255,0.08)}
-    .addr{font-size:12px; line-height:1.35; text-align:right; color:#eef6ee}
-    .rope-strip{height:30px; opacity:0.18; background-repeat:repeat-x; background-position:center; background-size:auto 30px}
+    header{background:linear-gradient(180deg,var(--accent), #6d846c); color:#fff; padding:14px 0; position:relative}
+    .header-inner{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:0 18px}
+    .brand{font-weight:700; font-size:18px}
+    .nav{display:flex; gap:12px}
+    .nav button{background:transparent;color:rgba(255,255,255,0.95);border:0;padding:8px 10px;border-radius:6px;cursor:pointer;font-size:15px}
+    .nav button.active{background:rgba(255,255,255,0.10)}
+    .rope-strip{height:34px; opacity:0.16; background-repeat:repeat-x; background-position:center; background-size:auto 34px}
 
     main{padding:28px 18px}
     .hero{max-width:900px;margin:0 auto;text-align:center;padding:6px 0 18px}
     .hero h1{font-size:28px;margin:6px 0 8px}
-    .lead{color:#fff; background:linear-gradient(180deg,#7f927e,#6c836b); display:inline-block; padding:8px 12px; border-radius:10px; opacity:.9}
-
+    .lead{color:#e7e7e7;max-width:760px;margin:0 auto 14px}
     .cta-wrap{margin-top:18px}
 
-    /* Quote button (unchanged) */
+    /* Quote button */
     .quote-button{
       display:inline-flex;align-items:center;gap:12px;background:var(--slate);color:white;border:0;padding:12px 18px;border-radius:10px;cursor:pointer;
       box-shadow:0 8px 20px rgba(19,23,22,0.18);
@@ -56,66 +45,122 @@
     .quote-button svg{width:56px;height:56px;flex:0 0 56px}
     .btn-text{line-height:1}
 
-    /* Values (kept) */
+    /* Values */
     .values{margin-top:26px;text-align:center}
     .values-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:820px;margin:18px auto}
-    .value-card{background:rgba(255,255,255,0.6);padding:12px 14px;border-radius:8px}
+    .value-card{background:rgba(255,255,255,0.03);padding:12px 14px;border-radius:8px}
     .value-card h3{margin:0 0 6px}
     .value-card p{margin:0;color:var(--muted)}
 
+    /* cards */
     .card-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:22px}
     .card{background:white;padding:14px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.06);min-width:200px;max-width:320px;text-align:left}
 
+    /* pages */
     .page{display:none}
     .page.active{display:block}
 
+    /* rules blocks */
     .rules{display:flex;gap:12px;flex-wrap:wrap}
     .rule-block{flex:1;min-width:210px;background:#fff;padding:14px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
 
+    /* small CTA */
     .bottom-cta{text-align:center;margin:26px 0}
     .quote-small{background:transparent;border:2px solid var(--slate);padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700}
 
+    /* footer */
     footer{background:white;padding:18px 0;margin-top:28px}
     footer .container{display:flex;flex-direction:column;align-items:center;gap:8px}
 
-    /* ===== Ogee SVG + fold animation ===== */
-    .stone-stage{display:grid;place-items:center;margin:18px auto}
-    .stone-wrap{width:340px;max-width:92vw;aspect-ratio:1/1;position:relative;perspective:1200px}
-    .stone{width:100%;height:100%}
-
-    /* outline: darker “pinstripe” look by double stroke */
-    .stroke-dark{stroke:#2b2b2b; stroke-width:2.2}
-    .stroke-inner{stroke:#707070; stroke-width:1; opacity:.45}
-
-    /* parts to animate */
-    .piece{transform-box:fill-box; transform-origin:50% 50%}
-
-    /* default (unfolded headstone) */
-    .top-lid{transform-origin:50% 12%;}
-    .base-flap{transform-origin:50% 88%;}
-
-    /* hover -> fold into envelope */
-    .stone-wrap:hover .top-lid{
-      transition:transform 700ms cubic-bezier(.2,.7,.2,1);
-      transform:rotateX(-165deg) translateY(-1px);
+    /* CONTACT LAYOUT */
+    .contact-top{
+      position:relative;
+      display:grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap:16px;
+      align-items:start;
     }
-    .stone-wrap:hover .base-flap{
-      transition:transform 700ms cubic-bezier(.2,.7,.2,1) 50ms;
-      transform:rotateX(170deg) translateY(1px);
+    .castle-wrap{
+      position:relative;
+      min-height:180px;
+      overflow:visible;
     }
-    .stone-wrap:hover .body{
-      transition:transform 650ms ease;
-      transform:translateZ(-2px) scale(0.998);
+    .castle-bg{
+      position:absolute;
+      right:-10px;
+      top:-20px;
+      width:340px;
+      height:auto;
+      opacity:0.12;              /* subtle watermark look */
+      z-index:-1;
+      filter:drop-shadow(0 2px 2px rgba(0,0,0,0.05));
+      animation:floaty 8s ease-in-out infinite;
+    }
+    @keyframes floaty{
+      0%   { transform: translateY(0px) }
+      50%  { transform: translateY(6px) }
+      100% { transform: translateY(0px) }
     }
 
-    /* show “Send Email” when folded */
-    .send-email{opacity:0; pointer-events:none; margin-top:10px}
-    .stone-wrap:hover + .send-email{opacity:1; pointer-events:auto; transition:opacity .35s ease}
+    .contact-panels{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+      margin-top:12px;
+    }
+
+    .panel{
+      background:#fff;
+      border-radius:10px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.04);
+      padding:14px;
+    }
+
+    /* simple map placeholder */
+    .map-box{
+      aspect-ratio: 4 / 3;
+      background:linear-gradient(180deg,#f5f5f5,#fafafa);
+      border:1px solid #ddd;
+      border-radius:10px;
+      position:relative;
+      overflow:hidden;
+    }
+    .map-box svg{position:absolute; inset:0; width:100%; height:100%}
+
+    /* info list */
+    .info-list{margin:0; padding-left:18px}
+    .info-list li{margin:4px 0}
+
+    /* FAQ */
+    details{
+      background:#fff;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.04);padding:10px 12px;margin:8px 0
+    }
+    summary{cursor:pointer;font-weight:700}
+
+    /* Headstone-envelope (bottom feature) */
+    .contact-bottom{
+      display:flex;justify-content:center;margin-top:14px
+    }
+    .fold-cta{
+      display:inline-flex;align-items:center;gap:10px;background:var(--slate);color:#fff;border:0;padding:10px 14px;border-radius:10px;cursor:pointer;
+      box-shadow:0 8px 20px rgba(19,23,22,0.18); font-weight:700;
+    }
+    .fold-cta svg{width:72px;height:72px;flex:0 0 72px}
+
+    /* Headstone styling: darker pinstripe outline */
+    .stone-outline{ stroke:#2a2a2a; stroke-width:2; }
+    .stone-outline-thin{ stroke:#2a2a2a; stroke-width:1.4; }
 
     /* responsive */
     @media(min-width:880px){
       .hero h1{font-size:40px}
       .values-grid{grid-template-columns:repeat(4,1fr)}
+      .nav{gap:18px}
+    }
+    @media(max-width:860px){
+      .contact-top{ grid-template-columns:1fr }
+      .castle-bg{right:0; width:60vw; opacity:0.10}
+      .contact-panels{grid-template-columns:1fr}
     }
     @media(max-width:720px){
       .values-grid{grid-template-columns:1fr}
@@ -124,40 +169,29 @@
       .mobile-bottom-cta{position:fixed;left:0;right:0;bottom:12px;display:flex;justify-content:center;pointer-events:auto}
       .mobile-bottom-cta .quote-button{width:92%;max-width:640px}
     }
-
     .muted{color:var(--muted);font-size:14px}
     a{color:var(--dark);text-decoration:none}
     .center{text-align:center}
-    hr{border:none;height:1px;background:rgba(0,0,0,0.08);margin:18px 0}
+    hr{border:none;height:1px;background:rgba(0,0,0,0.05);margin:18px 0}
+    .img-placeholder{background:linear-gradient(180deg,#e9e9e9,#f4f4f4);border-radius:8px;padding:36px 24px;color:#888}
   </style>
 </head>
 <body>
-  <!-- ===== HEADER ===== -->
+  <!-- HEADER -->
   <header>
-    <div class="topbar container">
-      <div class="brand">
-        <!-- temporary white logo block; replace with your white logo image if you like -->
-        <div class="logo">DG</div>
-        <div class="name">David Gynn Memorials</div>
-      </div>
-
+    <div class="header-inner container">
+      <div class="brand">David Gynn Memorials</div>
       <nav class="nav" aria-label="Main navigation">
         <button data-page="home" class="active">Home</button>
         <button data-page="memorials">Memorials</button>
         <button data-page="services">Stones & Services</button>
         <button data-page="contact">Contact</button>
       </nav>
-
-      <div class="addr">
-        The Monumental Works<br>
-        Roydon Road, Launceston, Cornwall PL15 8DR<br>
-        01566 773810
-      </div>
     </div>
     <div class="rope-strip" id="ropeStrip"></div>
   </header>
 
-  <!-- ===== MAIN ===== -->
+  <!-- MAIN CONTENT (single-file SPA) -->
   <main>
     <div class="container">
 
@@ -167,50 +201,15 @@
           <h1>Family-owned memorial masonry in Cornwall</h1>
           <p class="lead">David Gynn Memorials — David, Harry & Eddie. Trusted craftsmanship for over 40 years.</p>
 
-          <!-- ==== SVG: Ogee headstone that folds into an envelope on hover ==== -->
-          <div class="stone-stage">
-            <div class="stone-wrap" id="stoneWrap" title="Hover to fold, click to email">
-              <svg class="stone" viewBox="0 0 220 220" aria-label="Ogee headstone folding">
-                <!-- BODY (front slab) -->
-                <path class="piece body stroke-dark" fill="var(--stone)"
-                  d="M30 175 L30 80
-                     C30 70 50 55 110 55
-                     C170 55 190 70 190 80
-                     L190 175 Z" />
-                <path class="stroke-inner" fill="none"
-                  d="M30 175 L30 80
-                     C30 70 50 55 110 55
-                     C170 55 190 70 190 80
-                     L190 175 Z" />
-
-                <!-- TOP (ogee cap that folds down to be envelope lid) -->
-                <path class="piece top-lid stroke-dark" fill="var(--stone2)"
-                  d="M30 80
-                     C30 70 50 55 110 55
-                     C170 55 190 70 190 80
-                     L190 110
-                     C160 105 140 102 110 102
-                     C80 102 60 105 30 110 Z"/>
-                <path class="piece top-lid stroke-inner" fill="none"
-                  d="M30 80
-                     C30 70 50 55 110 55
-                     C170 55 190 70 190 80
-                     L190 110
-                     C160 105 140 102 110 102
-                     C80 102 60 105 30 110 Z"/>
-
-                <!-- BASE (plinth that folds up to become envelope lower flap) -->
-                <path class="piece base-flap stroke-dark" fill="var(--stone)"
-                  d="M30 175 L190 175 L190 215 L30 215 Z
-                     M30 175 L110 135 L190 175 Z" />
-                <path class="piece base-flap stroke-inner" fill="none"
-                  d="M30 175 L190 175 L190 215 L30 215 Z
-                     M30 175 L110 135 L190 175 Z" />
+          <div class="cta-wrap">
+            <button class="quote-button" id="quoteBtn" aria-label="Get a Quote">
+              <svg viewBox="0 0 200 200" id="stoneSVG" role="img" aria-hidden="true">
+                <!-- ogee headstone -->
+                <path class="stone-outline" id="stonePath" d="M30 160 L30 110 C30 92 50 70 80 66 C92 64 108 64 120 66 C150 70 170 92 170 110 L170 160 Z" fill="var(--stone)"/>
+                <!-- base -->
+                <rect class="stone-outline-thin" x="55" y="140" width="90" height="10" fill="rgba(0,0,0,0.06)"></rect>
               </svg>
-            </div>
-            <button class="quote-button send-email" id="sendEmailBtn" aria-label="Send email">
-              <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M4 8l8 5 8-5v8H4zM4 6h16l-8 5z"/></svg>
-              <span class="btn-text">Send Email</span>
+              <span class="btn-text">Get a Quote</span>
             </button>
           </div>
 
@@ -297,7 +296,8 @@
 
         <section style="margin-top:16px">
           <h3>Caring for Your Memorial</h3>
-          <div class="muted">Video placeholder — tutorial on cleaning & repainting (add actual video later)</div>
+          <div class="img-placeholder">Video placeholder — tutorial on cleaning & repainting (add actual video later)</div>
+          <p class="muted">We offer cleaning and repainting to keep memorials looking their best.</p>
         </section>
 
         <div class="bottom-cta"><button class="quote-small" id="quoteBtn3">Get a Quote</button></div>
@@ -305,14 +305,98 @@
 
       <!-- CONTACT PAGE -->
       <section id="contact" class="page">
-        <h1>Contact</h1>
-        <p class="muted">Quick quote requests work best with a photo and a short description. Use the Get a Quote button to open your email with a template (or attach images).</p>
-
-        <div style="max-width:640px;margin:8px auto">
-          <div style="background:#fff;padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.04)">
-            <p><strong>Example email (testing):</strong> test@example.com</p>
-            <p class="muted">Phone: 01234 567890 (placeholder)</p>
+        <div class="contact-top">
+          <div>
+            <h1 style="position:relative; z-index:1">Contact</h1>
+            <p class="muted">Quick quote requests work best with a photo and a short description.</p>
           </div>
+          <div class="castle-wrap" aria-hidden="true">
+            <!-- Subtle castle background animation (vector silhouette-style) -->
+            <svg class="castle-bg" viewBox="0 0 600 400" role="img" aria-label="Castle silhouette">
+              <defs>
+                <linearGradient id="cGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#1c2d24"/>
+                  <stop offset="1" stop-color="#1c2d24"/>
+                </linearGradient>
+              </defs>
+              <!-- rough traced silhouette—clean and subtle -->
+              <path d="M40,300 L120,240 L220,240 L260,210 L300,230 L360,170 L420,180 L460,160 L500,190 L560,175 L560,320 L40,320 Z"
+                    fill="url(#cGrad)" opacity="0.8"/>
+              <!-- light inner stipple strokes (very subtle) -->
+              <path d="M80,285 C120,270 160,270 200,260 M230,250 C260,245 290,240 320,220 M360,200 C390,195 420,190 450,185"
+                    stroke="#0a0f0d" stroke-opacity="0.25" stroke-width="4" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="contact-panels">
+          <div class="panel">
+            <h3>Get in touch</h3>
+            <ul class="info-list">
+              <li><strong>Email (example):</strong> test@example.com</li>
+              <li><strong>Phone:</strong> 01234 567890</li>
+            </ul>
+            <p class="muted">Use the “Send Email” headstone below to open a pre-filled message.</p>
+          </div>
+
+          <div class="panel">
+            <h3>Map (placeholder)</h3>
+            <div class="map-box" aria-hidden="true">
+              <!-- Pure SVG map placeholder (no services) -->
+              <svg viewBox="0 0 400 300" preserveAspectRatio="none">
+                <rect x="0" y="0" width="400" height="300" fill="#f8f8f8"/>
+                <path d="M40,220 L120,160 L220,170 L260,150 L320,180 L360,140" fill="none" stroke="#c7c7c7" stroke-width="8" stroke-linecap="round"/>
+                <circle cx="260" cy="150" r="8" fill="#888"/>
+                <text x="20" y="24" font-size="14" fill="#777">Example Map Area</text>
+                <rect x="20" y="250" width="140" height="28" rx="6" ry="6" fill="#e9e9e9" stroke="#ddd"/>
+                <text x="30" y="268" font-size="12" fill="#666">Directions placeholder</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>Did you know?</h3>
+            <p class="muted">Churchyard rules vary by parish. We confirm local requirements before any work begins.</p>
+          </div>
+
+          <div class="panel">
+            <h3>Commonly Asked Questions</h3>
+            <details>
+              <summary>Can you repaint faded lettering?</summary>
+              <p>Yes — where the stone accepts repainting we can refresh it to match the original intent.</p>
+            </details>
+            <details>
+              <summary>What materials do you recommend?</summary>
+              <p>Delabole or Welsh slate for tradition and durability; granite for some cemetery settings.</p>
+            </details>
+            <details>
+              <summary>Do you advise on parish rules?</summary>
+              <p>Absolutely. We check with your parish and guide you through permitted sizes and finishes.</p>
+            </details>
+          </div>
+        </div>
+
+        <!-- Bottom feature: headstone → envelope (hover folds; click opens mail) -->
+        <div class="contact-bottom">
+          <button class="fold-cta" id="contactFoldBtn" aria-label="Send Email">
+            <svg viewBox="0 0 220 180" id="stoneContact" role="img" aria-hidden="true">
+              <!-- Headstone front (ogee) -->
+              <path class="stone-outline" id="stoneContactFront"
+                    d="M30 150 L30 88 C30 72 52 52 95 48 C112 46 138 46 155 48 C198 52 210 72 210 88 L210 150 Z"
+                    fill="var(--stone)"/>
+              <!-- Base (forms envelope flap underfold) -->
+              <rect class="stone-outline-thin" x="58" y="130" width="124" height="12" fill="rgba(0,0,0,0.06)"></rect>
+
+              <!-- Envelope state (hidden initially) -->
+              <g id="envelopeGroup" transform="translate(0,0) scale(1)" opacity="0">
+                <rect x="40" y="90" width="160" height="70" rx="6" fill="#ffffff" stroke="#2a2a2a" stroke-width="2"/>
+                <path d="M40 90 L120 130 L200 90" fill="none" stroke="#2a2a2a" stroke-width="2"/>
+                <!-- bottom base as under-fold triangle -->
+                <path d="M40 160 L120 120 L200 160 Z" fill="#f2f2f2" stroke="#2a2a2a" stroke-width="1.6"/>
+              </g>
+            </svg>
+            <span>Send Email</span>
+          </button>
         </div>
 
         <div class="bottom-cta"><button class="quote-small" id="quoteBtn4">Get a Quote</button></div>
@@ -321,14 +405,14 @@
     </div> <!-- container -->
   </main>
 
-  <!-- fixed mobile bottom CTA (only visible on small screens) -->
+  <!-- fixed mobile bottom CTA -->
   <div class="mobile-bottom-cta" style="display:none" id="mobileCtaWrap">
     <button class="quote-button" id="mobileQuoteBtn"><svg viewBox="0 0 200 200" aria-hidden="true">
-      <path d="M30 160 L30 110 C30 92 54 68 100 68 C146 68 170 92 170 110 L170 160 Z" fill="var(--stone)" stroke="#cfcfcf" stroke-width="2"/>
+      <path class="stone-outline" d="M30 160 L30 110 C30 92 50 70 80 66 C92 64 108 64 120 66 C150 70 170 92 170 110 L170 160 Z" fill="var(--stone)"/>
     </svg><span class="btn-text">Get a Quote</span></button>
   </div>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- FOOTER -->
   <footer>
     <div class="rope-strip" id="ropeStripFooter"></div>
     <div class="container">
@@ -337,11 +421,11 @@
     </div>
   </footer>
 
-  <!-- ===== Scripts ===== -->
+  <!-- Inline scripts -->
   <script>
-    // Rope strip (subtle Celtic-esque wave)
+    // --- Rope strip asset (inline svg background) ---
     (function injectRope(){
-      var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 60"><path d="M0 30 C40 0 120 0 160 30 C200 60 280 60 320 30 C360 0 440 0 480 30 C520 60 600 60 640 30 C680 0 760 0 800 30 C840 60 920 60 960 30 C1000 0 1080 0 1120 30 C1160 60 1200 60 1240 30" stroke="%233a4b3a" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 60"><path d="M0 30 C40 0 120 0 160 30 C200 60 280 60 320 30 C360 0 440 0 480 30 C520 60 600 60 640 30 C680 0 760 0 800 30 C840 60 920 60 960 30 C1000 0 1080 0 1120 30 C1160 60 1200 60 1240 30" stroke="%236b7f6a" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
       var enc = 'data:image/svg+xml;utf8,'+encodeURIComponent(svg);
       var el = document.getElementById('ropeStrip');
       var el2 = document.getElementById('ropeStripFooter');
@@ -349,7 +433,7 @@
       if(el2) el2.style.backgroundImage = 'url("' + enc + '")';
     })();
 
-    // Simple SPA nav
+    // --- SPA navigation ---
     (function navSetup(){
       var buttons = document.querySelectorAll('.nav button');
       function show(page){
@@ -377,32 +461,83 @@
       document.getElementById('year').textContent = new Date().getFullYear();
     })();
 
-    // Email actions (works without any third-party service)
-    (function emailActions(){
-      var mailTo = 'test@example.com';  // change to your real email when ready
+    // --- Quote button: smooth fold then mailto ---
+    (function quoteSetup(){
+      var mailTo = 'test@example.com';
       var subject = encodeURIComponent('Quote Request – David Gynn Memorials');
-      var body = encodeURIComponent(
-        'Hello David Gynn Memorials,%0D%0A%0D%0A' +
-        'I would like to request a quote for:%0D%0A%0D%0A' +
-        '[ ] Cleaning and Painting%0D%0A' +
-        '[ ] Simple Memorial Request%0D%0A' +
-        '[ ] Brochure Request%0D%0A' +
-        '[ ] Other (please specify)%0D%0A%0D%0A' +
-        'Details:%0D%0A_______________________%0D%0A%0D%0A' +
-        'Please attach any images if relevant.'
-      );
-      function send(){ window.location.href = 'mailto:'+mailTo+'?subject='+subject+'&body='+body; }
+      var bodyTemplate = encodeURIComponent('Hello David Gynn Memorials,%0D%0A%0D%0AI would like to request a quote for:%0D%0A%0D%0A[ ] Cleaning and Painting%0D%0A[ ] Simple Memorial Request%0D%0A[ ] Brochure Request%0D%0A[ ] Other (please specify)%0D%0A%0D%0ADetails:%0D%0A_______________________%0D%0A%0D%0APlease attach any images if relevant.');
+      function openMail(){ window.location.href = 'mailto:'+mailTo+'?subject='+subject+'&body='+bodyTemplate; }
 
-      // click the “letter” to email (after hover it will be folded, but click works anytime)
-      document.getElementById('stoneWrap').addEventListener('click', function(e){
-        e.preventDefault(); send();
-      });
-      var btn = document.getElementById('sendEmailBtn');
-      if(btn){ btn.addEventListener('click', function(e){ e.preventDefault(); send(); }); }
+      function animateAndSend(svgElement){
+        svgElement.style.transition = 'transform 1.2s cubic-bezier(.2,.7,.2,1), opacity 1.2s';
+        svgElement.style.transformOrigin = '50% 35%';
+        svgElement.style.transform = 'rotateX(22deg) translateY(6px) scale(0.96)';
+        svgElement.style.opacity = '0.94';
+        setTimeout(function(){
+          openMail();
+          setTimeout(function(){
+            svgElement.style.transform = '';
+            svgElement.style.opacity = '';
+          }, 900);
+        }, 1200);
+      }
+
+      var primary = document.getElementById('quoteBtn');
+      var stoneSVG = document.getElementById('stoneSVG');
+      if(primary){ primary.addEventListener('click', function(e){ e.preventDefault(); animateAndSend(stoneSVG); }); }
       ['quoteBtn2','quoteBtn3','quoteBtn4','mobileQuoteBtn'].forEach(function(id){
         var b = document.getElementById(id);
         if(!b) return;
-        b.addEventListener('click', function(e){ e.preventDefault(); send(); });
+        b.addEventListener('click', function(e){ e.preventDefault(); animateAndSend(stoneSVG); });
+      });
+    })();
+
+    // --- Contact page: hover-fold → envelope, click to email ---
+    (function contactFold(){
+      var btn = document.getElementById('contactFoldBtn');
+      var front = document.getElementById('stoneContactFront');
+      var env = document.getElementById('envelopeGroup');
+
+      // smooth transitions
+      [front, env].forEach(function(el){
+        el.style.transition = 'transform 700ms cubic-bezier(.25,.8,.25,1), opacity 700ms';
+        el.style.transformOrigin = '50% 60%';
+      });
+
+      // hover: fold open
+      btn.addEventListener('mouseenter', function(){
+        front.style.transform = 'rotateX(82deg) translateY(12px)';
+        front.style.opacity = '0';
+        env.style.opacity = '1';
+        env.style.transform = 'translateY(-6px)';
+      });
+      // leave: fold back
+      btn.addEventListener('mouseleave', function(){
+        front.style.transform = '';
+        front.style.opacity = '1';
+        env.style.opacity = '0';
+        env.style.transform = '';
+      });
+
+      // click: open email
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        var mailTo = 'test@example.com';
+        var subject = encodeURIComponent('Contact – David Gynn Memorials');
+        var body = encodeURIComponent('Hello,%0D%0A%0D%0AI would like to enquire about...%0D%0A%0D%0A(Please attach any images if relevant.)');
+        window.location.href = 'mailto:'+mailTo+'?subject='+subject+'&body='+body;
+      });
+    })();
+
+    // Accessibility: keyboard trigger for main CTA
+    (function a11y(){
+      document.addEventListener('keydown', function(e){
+        if(e.key==='Enter'){
+          var active = document.activeElement;
+          if(active && active.classList && (active.classList.contains('quote-button') || active.id==='contactFoldBtn')){
+            active.click();
+          }
+        }
       });
     })();
 
