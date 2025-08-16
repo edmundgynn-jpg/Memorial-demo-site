@@ -1,56 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Memorial Envelope Hover</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <style>
-    body {
-      background: #f5f5f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    svg {
-      width: 300px;
-      cursor: pointer;
-    }
-    .top {
-      transform-origin: bottom center; /* pivot at base of top half */
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Ogee Memorial → Envelope (Hover)</title>
+
+<!-- GSAP (free CDN, no account needed) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<style>
+  :root{
+    --stone:#cdcac4;     /* pale slate/stone */
+    --outline:#2b2b2b;   /* dark outline */
+    --highlight:rgba(255,255,255,.45);
+    --bg:#f1f1ef;
+  }
+  html,body{height:100%}
+  body{
+    margin:0; display:grid; place-items:center;
+    background:var(--bg); font-family:system-ui, sans-serif;
+  }
+
+  /* demo sizing */
+  .wrap{
+    width:min(520px, 92vw);
+    perspective:1000px;          /* nicer 3D fold */
+  }
+  svg{width:100%; height:auto; display:block}
+
+  /* Make transforms behave nicely on SVG pieces */
+  .flap{
+    transform-box: fill-box;
+    transform-origin: 50% 100%;  /* hinge along the bottom edge of the flap */
+  }
+
+  /* Subtle pinstripe edge to make the pale fill read crisply */
+  .stoneEdge{
+    fill:none;
+    stroke:var(--highlight);
+    stroke-width:.8;
+    stroke-linejoin:round; stroke-linecap:round;
+  }
+
+  /* Pointer + a little affordance */
+  #memorialEnvelope{cursor:pointer; user-select:none}
+</style>
 </head>
 <body>
 
-<svg id="envelopeIcon" viewBox="0 0 512 954" xmlns="http://www.w3.org/2000/svg">
+<div class="wrap">
+  <!-- ViewBox sized so the hinge is exactly at y=480 -->
+  <svg id="memorialEnvelope" viewBox="0 0 600 900" aria-label="Headstone envelope button">
 
-  <!-- Bottom half -->
-  <path class="bottom" d="M0,477 L0,954 L512,954 L512,477 Z" fill="#c8c6c2" stroke="#888"/>
+    <!-- BOTTOM: body of the headstone + envelope underfold triangle -->
+    <!-- Main bottom rectangle (below the hinge line at y=480) -->
+    <path id="bottom"
+      d="M60,480 L60,860 L540,860 L540,480 Z"
+      fill="var(--stone)" stroke="var(--outline)" stroke-width="1.8"/>
 
-  <!-- Top half -->
-  <path class="top" d="M0,477 L0,0 
-     C130,30 380,30 512,0 
-     L512,477 Z" fill="#c8c6c2" stroke="#888"/>
-</svg>
+    <!-- Under-flap triangle (reveals like an envelope interior) -->
+    <path id="underfold"
+      d="M60,480 L300,660 L540,480 Z"
+      fill="rgba(0,0,0,.06)" stroke="var(--outline)" stroke-width="1"
+      opacity="0"/>
+
+    <!-- Pinstripe highlight on bottom -->
+    <path class="stoneEdge"
+      d="M60,480 L60,860 L540,860 L540,480" />
+
+    <!-- TOP FLAP: true OGEE profile + straight hinge at y=480 -->
+    <!-- The curve here makes a gentle rise with the highest point near center (classic ogee). -->
+    <path id="flap" class="flap"
+      d="
+        M60,480
+        L60,170
+        C160,130 260,140 300,120
+        S440,130 540,170
+        L540,480
+        Z"
+      fill="var(--stone)" stroke="var(--outline)" stroke-width="1.8"/>
+
+    <!-- Pinstripe highlight on flap -->
+    <path class="stoneEdge"
+      d="
+        M60,480
+        L60,170
+        C160,130 260,140 300,120
+        S440,130 540,170
+        L540,480" />
+  </svg>
+</div>
 
 <script>
-  const topHalf = document.querySelector(".top");
-  const icon = document.getElementById("envelopeIcon");
+  // Elements
+  const flap      = document.getElementById('flap');
+  const underfold = document.getElementById('underfold');
+  const buttonEl  = document.getElementById('memorialEnvelope');
 
-  let openAnim = gsap.to(topHalf, {
-    rotateX: -180,
-    duration: 0.5,
-    ease: "power2.inOut",
-    paused: true
-  });
+  // Prepare states
+  gsap.set(flap, { rotationX: 0, transformOrigin: "50% 100%" });
+  gsap.set(underfold, { opacity: 0 });
 
-  icon.addEventListener("mouseenter", () => {
-    openAnim.play();
-  });
+  // One timeline we can play/reverse on hover
+  const tl = gsap.timeline({ paused: true, defaults:{ duration:0.35, ease:"power2.inOut" }});
+  tl.to(flap, { rotationX: -180 }, 0)
+    .to(underfold, { opacity: 1 }, 0.1);
 
-  icon.addEventListener("mouseleave", () => {
-    openAnim.reverse();
+  // Hover to open/close quickly
+  buttonEl.addEventListener('mouseenter', () => tl.play());
+  buttonEl.addEventListener('mouseleave', () => tl.reverse());
+
+  // Click to launch email (only when it's open feels nicer)
+  buttonEl.addEventListener('click', () => {
+    if (tl.progress() < 0.99) { tl.play(); }
+    // small delay so it feels like "press to open then send"
+    setTimeout(() => {
+      window.location.href = "mailto:test@example.com?subject=Quote%20Request%20%E2%80%93%20David%20Gynn%20Memorials";
+    }, 150);
   });
 </script>
 
