@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Ogee Headstone Fold Animation</title>
+  <title>Memorial Envelope Hover</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <style>
     body {
@@ -13,9 +13,8 @@
       height: 100vh;
     }
     svg {
-      width: 400px;
-      height: auto;
-      overflow: visible;
+      width: 300px;
+      cursor: pointer;
     }
     .top {
       transform-origin: bottom center; /* pivot at base of top half */
@@ -24,25 +23,34 @@
 </head>
 <body>
 
-<svg viewBox="0 0 512 954" xmlns="http://www.w3.org/2000/svg">
+<svg id="envelopeIcon" viewBox="0 0 512 954" xmlns="http://www.w3.org/2000/svg">
 
   <!-- Bottom half -->
   <path class="bottom" d="M0,477 L0,954 L512,954 L512,477 Z" fill="#c8c6c2" stroke="#888"/>
 
-  <!-- Top half (cut at midpoint, ~477) -->
+  <!-- Top half -->
   <path class="top" d="M0,477 L0,0 
      C130,30 380,30 512,0 
      L512,477 Z" fill="#c8c6c2" stroke="#888"/>
 </svg>
 
 <script>
-  gsap.to(".top", {
-    rotateX: -180,       // fold down
-    transformOrigin: "bottom center",
-    duration: 30,        // nice and slow
-    yoyo: true,
-    repeat: -1,
-    ease: "power1.inOut"
+  const topHalf = document.querySelector(".top");
+  const icon = document.getElementById("envelopeIcon");
+
+  let openAnim = gsap.to(topHalf, {
+    rotateX: -180,
+    duration: 0.5,
+    ease: "power2.inOut",
+    paused: true
+  });
+
+  icon.addEventListener("mouseenter", () => {
+    openAnim.play();
+  });
+
+  icon.addEventListener("mouseleave", () => {
+    openAnim.reverse();
   });
 </script>
 
