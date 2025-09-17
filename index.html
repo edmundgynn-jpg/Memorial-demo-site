@@ -1,111 +1,121 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>David Gynn Memorials — Home</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>David Gynn Memorials — Home</title>
 
-<!-- Fonts: Cinzel for headings, Lora for body -->
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
-<style>
-  :root{
-    --bg: #f6f6f3;
-    --dark: #152820;       /* deep green */
-    --muted: #6f7a73;
-    --accent: #6b7f6a;     /* earthy green */
-    --slate: #33373a;
-    --stone: #e1dfda;
-    --max-width: 1200px;
-    --hero-height: 62vh;
-  }
+  <style>
+    :root{
+      --bg: #f6f6f3;
+      --dark: #152820;       /* deep green */
+      --muted: #6f7a73;
+      --accent: #6b7f6a;     /* earthy green */
+      --slate: #33373a;
+      --stone: #e1dfda;
+      --max-width: 1200px;
+      --hero-height: 66vh;
+    }
+    *{box-sizing:border-box}
+    body{font-family:'Lato',system-ui,Segoe UI,Arial,sans-serif; color:var(--dark); background:var(--bg); margin:0; -webkit-font-smoothing:antialiased}
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%;height:auto;display:block}
 
-  *{box-sizing:border-box}
-  body{font-family:'Lora', serif; color:var(--dark); background:var(--bg); margin:0; -webkit-font-smoothing:antialiased}
-  a{color:var(--dark); text-decoration:none}
-  img{max-width:100%;height:auto;display:block}
+    /* Header */
+    header{background:linear-gradient(180deg,var(--dark), #0f1c18); color:#fff; position:sticky; top:0; z-index:1000}
+    .site-bar{max-width:var(--max-width); margin:0 auto; padding:12px 20px; display:flex; align-items:center; gap:12px}
+    .brand{font-family:'Cinzel', serif; font-size:20px; letter-spacing:.6px}
+    .nav{margin-left:auto; display:flex; gap:12px; align-items:center}
+    .nav a{color:rgba(255,255,255,0.92); padding:8px 12px; border-radius:10px; font-weight:600; font-size:15px}
+    .nav a:hover{background:rgba(255,255,255,0.05)}
 
-  /* Header */
-  header{background:linear-gradient(180deg,var(--dark), #0f1c18); color:#fff; position:sticky; top:0; z-index:1000}
-  .site-bar{max-width:var(--max-width); margin:0 auto; padding:12px 20px; display:flex; align-items:center; gap:12px}
-  .brand{font-family:'Cinzel', serif; font-size:20px; letter-spacing:.6px}
-  .nav{margin-left:auto; display:flex; gap:12px}
-  .nav a{color:rgba(255,255,255,0.9); padding:8px 12px; border-radius:8px}
-  .nav a:hover{background:rgba(255,255,255,0.05)}
+    /* HERO */
+    .hero{
+      height:var(--hero-height);
+      display:flex; align-items:center; justify-content:center;
+      position:relative;
+      overflow:hidden;
+      color: #fff;
+    }
+    /* Replace 'assets/images/hero-granite.jpg' with your chosen hero image */
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background-image: url('assets/images/hero-granite.jpg');
+      background-size: cover; background-position: center;
+      filter: contrast(.94) saturate(.95) brightness(.55);
+      transform: scale(1.02);
+    }
+    .hero-overlay{
+      position:relative; z-index:2; max-width:var(--max-width); width:100%; padding:28px;
+      display:flex; gap:24px; align-items:center; justify-content:space-between;
+    }
+    .hero-left{flex:1; min-width:260px; color: #fff}
+    .hero-right{flex:0 0 220px; display:flex; align-items:center; justify-content:center}
+    .hero-title{
+      font-family:'Cinzel', serif; font-size:clamp(26px, 4.2vw, 44px); margin:0 0 12px; line-height:1.02;
+      text-shadow: 0 6px 16px rgba(0,0,0,0.45);
+    }
+    .hero-sub{color:rgba(255,255,255,0.9); margin-bottom:18px; font-size:16px; max-width:720px}
+    .cta-row{display:flex; gap:12px; align-items:center}
+    .btn-primary{background:var(--slate); color:white; border:0; padding:12px 18px; border-radius:10px; font-weight:700}
+    .btn-secondary{background:transparent; border:2px solid rgba(255,255,255,0.18); color:white; padding:10px 14px; border-radius:10px}
 
-  /* HERO */
-  .hero{
-    height:var(--hero-height);
-    display:flex; align-items:center; justify-content:center;
-    position:relative;
-    overflow:hidden;
-    color: #fff;
-  }
-  /* Replace the URL below with your hero image path (see comments) */
-  .hero::before{
-    content:"";
-    position:absolute; inset:0;
-    background-image: url('assets/images/hero-placeholder.jpg');
-    background-size: cover; background-position: center;
-    filter: contrast(.95) saturate(.95) brightness(.56);
-    transform: scale(1.02);
-  }
-  .hero-overlay{
-    position:relative; z-index:2; max-width:var(--max-width); width:100%; padding:28px;
-    display:flex; gap:24px; align-items:center; justify-content:space-between;
-  }
-  .hero-left{flex:1; min-width:260px;}
-  .hero-right{flex:1; display:flex; align-items:center; justify-content:center}
-  .hero-title{
-    font-family:'Cinzel', serif; font-size:clamp(22px, 4.4vw, 44px); margin:0 0 12px; line-height:1.02;
-    text-shadow: 0 6px 14px rgba(0,0,0,0.35);
-  }
-  .hero-sub{color:var(--stone); margin-bottom:18px; font-size:16px; max-width:720px}
-  .cta-row{display:flex; gap:12px; align-items:center}
-  .btn-primary{background:var(--slate); color:white; border:0; padding:12px 18px; border-radius:10px; font-weight:700}
-  .btn-secondary{background:transparent; border:2px solid rgba(255,255,255,0.18); color:white; padding:10px 14px; border-radius:10px}
+    .hero-logo {
+      width:160px; height:160px; border-radius:10px; background:rgba(255,255,255,0.06);
+      display:flex; align-items:center; justify-content:center; color:#fff; font-family:'Cinzel';
+      font-size:18px; box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+      text-align:center; padding:10px;
+    }
 
-  /* small subtle logo area in hero-right - placeholder square */
-  .hero-logo {
-    width:140px; height:140px; border-radius:10px; background:rgba(255,255,255,0.06);
-    display:flex; align-items:center; justify-content:center; color:#fff; font-family:'Cinzel';
-    font-size:18px; box-shadow: 0 12px 28px rgba(0,0,0,0.35);
-  }
+    /* Main page container */
+    .page { max-width:var(--max-width); margin:32px auto; padding:0 20px; }
 
-  /* Page content area */
-  .page { max-width:var(--max-width); margin:32px auto; padding:0 20px; }
+    /* About / intro */
+    .about { display:flex; gap:22px; align-items:flex-start; margin-bottom:28px; flex-wrap:wrap }
+    .about .text { flex:2; min-width:300px }
+    .about .aside { flex:1; min-width:220px; background:#fff; padding:16px; border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,0.04) }
 
-  /* Intro paragraph */
-  .intro { display:flex; gap:20px; align-items:flex-start; margin-bottom:28px }
-  .intro .text { flex:2 }
-  .intro .aside { flex:1; min-width:220px; background:#fff; padding:14px; border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,0.04) }
+    .about h2{font-family:'Cinzel', serif; margin:0 0 10px}
 
-  /* Services grid */
-  .services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; margin-top:18px }
-  .service-card { background:#fff; padding:18px; border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,0.04); text-align:left }
-  .service-card h3{margin-top:0;font-family:'Cinzel', serif}
-  .service-card p{color:var(--muted); margin-bottom:10px}
-  .service-card .small{font-size:13px; color:#777}
+    /* Services grid */
+    .services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; margin-top:18px }
+    .service-card { background:#fff; padding:18px; border-radius:10px; box-shadow:0 8px 22px rgba(0,0,0,0.06); text-align:left; min-height:160px; display:flex; flex-direction:column; justify-content:space-between }
+    .service-card h3{margin-top:0;font-family:'Cinzel', serif; color:var(--slate)}
+    .service-card p{color:var(--muted); margin:8px 0 12px; font-size:15px}
+    .service-card .link{margin-top:auto; font-weight:700; color:var(--accent)}
 
-  /* Core values - subtle paragraph-style (not loud panels) */
-  .values { margin-top:36px; display:flex; gap:18px; align-items:flex-start; flex-direction:column }
-  .values p{max-width:900px; color:#2b3a33; font-size:16px; line-height:1.55}
+    /* Memorials special block */
+    .memorials-block { display:flex; gap:18px; margin-top:22px; align-items:flex-start; flex-wrap:wrap }
+    .memorials-text{flex:1; min-width:280px}
+    .memorials-cta{flex:0 0 240px; background:#fff; padding:16px; border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,0.04)}
+    .brochure-btn{display:block; background:var(--accent); color:#fff; padding:10px 12px; border-radius:8px; text-align:center; margin-top:10px; font-weight:700}
 
-  /* Video placeholders */
-  .video-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; margin-top:22px }
-  .video-placeholder { height:180px; background:linear-gradient(180deg,#e9e9e9,#f4f4f4); border-radius:8px; display:flex; align-items:center; justify-content:center; color:#666; font-style:italic }
+    /* Values */
+    .values { margin-top:36px; display:flex; gap:18px; align-items:flex-start; flex-direction:column }
+    .values p{max-width:900px; color:#2b3a33; font-size:16px; line-height:1.6}
 
-  /* Footer */
-  footer{background:#fff; padding:28px 0; margin-top:44px; border-top:1px solid rgba(0,0,0,.04)}
-  footer .meta{max-width:var(--max-width); margin:0 auto; padding:0 20px; display:flex; justify-content:space-between; gap:12px; color:var(--muted)}
+    .values-grid{display:flex; gap:12px; flex-wrap:wrap; margin-top:12px}
+    .value-small{background:#fff; padding:12px 14px; border-radius:8px; box-shadow:0 6px 16px rgba(0,0,0,0.04); min-width:180px}
 
-  /* small responsive niceties */
-  @media(max-width:920px){
-    .hero-overlay{flex-direction:column; align-items:flex-start}
-    .hero-right{align-self:stretch; width:100%}
-    .intro{flex-direction:column}
-  }
-</style>
+    /* Videos / IG area */
+    .video-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; margin-top:22px }
+    .video-placeholder { height:180px; background:linear-gradient(180deg,#e9e9e9,#f4f4f4); border-radius:8px; display:flex; align-items:center; justify-content:center; color:#666; font-style:italic }
+
+    /* Footer */
+    footer{background:#fff; padding:28px 0; margin-top:44px; border-top:1px solid rgba(0,0,0,.04)}
+    footer .meta{max-width:var(--max-width); margin:0 auto; padding:0 20px; display:flex; justify-content:space-between; gap:12px; color:var(--muted)}
+
+    /* Responsive */
+    @media(max-width:920px){
+      .hero-overlay{flex-direction:column; align-items:flex-start}
+      .hero-right{align-self:stretch; width:100%}
+      .about{flex-direction:column}
+    }
+  </style>
 </head>
 <body>
 
@@ -116,78 +126,83 @@
       <nav class="nav" aria-label="Main navigation">
         <a href="index.html">Home</a>
         <a href="memorials.html">Memorials</a>
-        <a href="stones.html">Stones & Services</a>
+        <a href="stones.html">Stones &amp; Engraving</a>
         <a href="contact.html">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- HERO with overlapping text on image -->
+  <!-- HERO -->
   <section class="hero" role="banner" aria-label="Hero">
     <div class="hero-overlay">
       <div class="hero-left">
         <h1 class="hero-title">Welcome to David Gynn Memorials</h1>
         <p class="hero-sub">
-          A family-run memorial masonry based in Launceston, Cornwall — David started the business over 40 years ago.
-          Today Harry & Eddie continue the craft with the same care and attention, serving churches and cemeteries across the region.
+          A family-run memorial masonry in Launceston, Cornwall with over <strong>40 years’ experience</strong> in the trade.
+          David began his career as a craftsman and after 10 years purchased the business — today Harry &amp; Eddie continue the work with the same care and respect.
         </p>
-
-        <div class="cta-row">
-          <!-- CONTACT button: update email on server side if required -->
+        <div class="cta-row" role="region" aria-label="Quick actions">
           <a class="btn-primary" href="mailto:info@davidgynnmemorials.co.uk?subject=Quote%20Request">Get a Quote</a>
-          <a class="btn-secondary" href="memorials.html">See Memorials</a>
+          <a class="btn-secondary" href="memorials.html">View Memorials</a>
         </div>
       </div>
 
+      <!-- Logo / emblem area (placeholder) -->
       <div class="hero-right" aria-hidden="true">
-        <!-- placeholder for logo/crest — replace with SVG or image later -->
-        <div class="hero-logo">DAVID GYNN<br><small style="font-size:.45em">MEMORIALS</small></div>
+        <div class="hero-logo">DAVID GYNN<br><small style="font-size:.46em">MEMORIALS</small></div>
       </div>
     </div>
   </section>
 
-  <!-- PAGE CONTENT -->
-  <main class="page" role="main">
+  <!-- MAIN -->
+  <main class="page" role="main" id="mainContent">
 
-    <!-- Intro + quick how we work -->
-    <section class="intro" aria-labelledby="introHeading">
+    <!-- About -->
+    <section class="about" aria-labelledby="aboutHeading">
       <div class="text">
-        <h2 id="introHeading">Handcrafted memorials, modern service</h2>
+        <h2 id="aboutHeading">Handcrafted memorials, modern service</h2>
         <p>
-          We design, supply and install memorials using Delabole and Welsh slate and a selection of light greys in granite.
-          From simple tablets to traditional headstones, we manage every step — site checks, parish applications, design approvals and sympathetic installation.
+          We design, supply and install memorials using black and grey granites alongside select Welsh slate.
+          Our service covers parish checks, design planning, application handling and careful installation — making the process straightforward and respectful for families.
         </p>
-
         <p>
-          We aim to make the process clear and respectful. If you have an old stone we can re-use or refurbish it; we also offer repainting and lettering services to restore inscriptions.
+          We provide clear advice on materials and timescales — ordering stone can take several months, and we always advise on appropriate settling times and installation windows.
         </p>
 
         <!-- Services summary -->
-        <div style="margin-top:18px">
-          <h3>What we do</h3>
+        <div style="margin-top:20px">
+          <h3>Our Services</h3>
           <div class="services-grid" aria-hidden="false">
             <article class="service-card" role="article" aria-labelledby="svc-memorials">
-              <h3 id="svc-memorials">Memorials</h3>
-              <p>Design and install bespoke memorials from Delabole and Welsh slate and light granite. We check parish rules and provide full guidance.</p>
-              <div class="small">View catalogue & brochures → <a href="memorials.html">Read more</a></div>
+              <div>
+                <h3 id="svc-memorials">Memorials</h3>
+                <p>Custom memorials in black &amp; grey granite, plus Welsh slate options. Each memorial is designed to last and to suit the parish rules of the chosen site.</p>
+              </div>
+              <div><a class="link" href="memorials.html#memorials">More →</a></div>
             </article>
 
             <article class="service-card" role="article" aria-labelledby="svc-inscriptions">
-              <h3 id="svc-inscriptions">Inscriptions</h3>
-              <p>Sandblasted or machine-cut lettering that lasts. We repaint inscriptions where the stone accepts repainting and keep historical character when needed.</p>
-              <div class="small"><a href="stones.html">Read more</a></div>
+              <div>
+                <h3 id="svc-inscriptions">Inscriptions</h3>
+                <p>Precise sandblasted or machine-cut lettering. We match styles and finishes, and offer repainting where the stone will accept it.</p>
+              </div>
+              <div><a class="link" href="memorials.html#inscriptions">More →</a></div>
             </article>
 
             <article class="service-card" role="article" aria-labelledby="svc-refurb">
-              <h3 id="svc-refurb">Refurbishing & Cleaning</h3>
-              <p>Careful cleaning, re-setting and repainting to restore memorials. We advise on conservation-friendly options for older stones.</p>
-              <div class="small"><a href="services.html">Read more</a></div>
+              <div>
+                <h3 id="svc-refurb">Refurbishing &amp; Cleaning</h3>
+                <p>Cleaning, repainting and re-setting by experienced masons to restore appearance while respecting the stone’s character.</p>
+              </div>
+              <div><a class="link" href="memorials.html#refurbishing">More →</a></div>
             </article>
 
             <article class="service-card" role="article" aria-labelledby="svc-signs">
-              <h3 id="svc-signs">Signs & Engraving</h3>
-              <p>Slate house signs, plaques and bespoke engraving. We can plan a simple slate sign designer tool later to let customers design on mobile.</p>
-              <div class="small"><a href="stones.html">Read more</a></div>
+              <div>
+                <h3 id="svc-signs">Signs &amp; Engraving</h3>
+                <p>Slate house signs and bespoke engraving. We can also engrave stone you bring to us and will advise on the best finish.</p>
+              </div>
+              <div><a class="link" href="stones.html#signs">More →</a></div>
             </article>
           </div>
         </div>
@@ -196,7 +211,7 @@
       <aside class="aside" aria-label="Contact details">
         <div class="aside">
           <div style="padding:12px 0 6px; font-weight:700">Contact</div>
-          <div style="font-size:14px; color:var(--muted)">
+          <div style="font-size:14px; color:var(--muted); line-height:1.4">
             Email: <a href="mailto:info@davidgynnmemorials.co.uk">info@davidgynnmemorials.co.uk</a><br>
             Phone: 01566 773810<br>
             Address: Roydon Road, Launceston, PL15 8DR
@@ -205,42 +220,68 @@
       </aside>
     </section>
 
-    <!-- Core values expressed subtly -->
-    <section class="values" aria-labelledby="valuesHeading">
-      <h2 id="valuesHeading">How we do it</h2>
+    <!-- Memorials detail with brochures (non-functional placeholders) -->
+    <section aria-labelledby="memorialsHeading" style="margin-top:30px">
+      <h2 id="memorialsHeading">Memorials — materials & guidance</h2>
 
-      <!-- Single paragraph explaining values -->
-      <p>
-        We work with warmth and care. Our approach is customer-led: we listen first and guide families through design and parish requirements without pressure.
-        We combine traditional skills with modern finishes to create memorials that last — focusing on quality materials, honest pricing and thoughtful service.
-        In short: we listen, we care, we craft, we deliver.
-      </p>
+      <div class="memorials-block">
+        <div class="memorials-text">
+          <p>
+            We supply and install a wide range of memorials, designed to honour loved ones with dignity and care.
+            Our most commonly used materials are <strong>black and light-to-dark grey granites</strong> — chosen for their durability and refined finish.
+          </p>
+          <p>
+            We also work with <strong>Welsh slate</strong> where a classic, textured finish is preferred. <strong>Delabole slate</strong> is an option only rarely today due to limited availability; we will advise on suitable alternatives where needed.
+          </p>
+          <p>
+            Each memorial is personalised with inscriptions, motifs and finishes. We handle parish checks and approvals where required, and will advise on realistic lead times (ordering stone can take several months).
+          </p>
+        </div>
 
-      <!-- Short bullets (light) for SEO/readability -->
-      <div style="display:flex; gap:12px; margin-top:12px; flex-wrap:wrap">
-        <div style="background:#fff; padding:12px 14px; border-radius:8px; box-shadow:0 6px 16px rgba(0,0,0,0.04); min-width:200px;">
-          <strong>Customer centricity</strong>
-          <div style="color:var(--muted); font-size:14px">We prioritise clear conversation and respect at every step.</div>
-        </div>
-        <div style="background:#fff; padding:12px 14px; border-radius:8px; box-shadow:0 6px 16px rgba(0,0,0,0.04); min-width:200px;">
-          <strong>Compassion</strong>
-          <div style="color:var(--muted); font-size:14px">We take time and care — this matters to families and us alike.</div>
-        </div>
-        <div style="background:#fff; padding:12px 14px; border-radius:8px; box-shadow:0 6px 16px rgba(0,0,0,0.04); min-width:200px;">
-          <strong>Quality & honesty</strong>
-          <div style="color:var(--muted); font-size:14px">Durable materials, clear quotes, and no unpleasant surprises.</div>
-        </div>
+        <aside class="memorials-cta" aria-hidden="true">
+          <strong>Download brochures</strong>
+          <!-- Non-functional placeholders — replace href="#" with actual file links when ready -->
+          <a class="brochure-btn" href="#" aria-disabled="true">Download Granite Brochure (placeholder)</a>
+          <a class="brochure-btn" href="#" aria-disabled="true" style="background:#5b6b59;margin-top:8px">Download Slate Brochure (placeholder)</a>
+        </aside>
       </div>
     </section>
 
-    <!-- Video placeholders - easy to swap for actual embeds later -->
+    <!-- Core values area -->
+    <section class="values" aria-labelledby="valuesHeading">
+      <h2 id="valuesHeading">How we do it</h2>
+
+      <p>
+        <strong>Craftsmanship with care.</strong>
+        At David Gynn Memorials we believe a memorial is more than stone — it is a lasting story. Each piece is created with dignity, precision and respect for the families we serve.
+      </p>
+
+      <p>
+        <strong>Tradition & experience.</strong>
+        David worked in the trade for ten years before purchasing the business; that experience, combined with over thirty years of ownership, means we bring over forty years’ practical knowledge to every project.
+      </p>
+
+      <p>
+        <strong>Personal service.</strong>
+        We listen first and guide families through design and parish requirements without pressure. Our aim is a straightforward, honest process from first contact to final installation.
+      </p>
+
+      <div class="values-grid">
+        <div class="value-small"><strong>Customer centricity</strong><div style="color:var(--muted);font-size:14px">We put families first with clear communication and care.</div></div>
+        <div class="value-small"><strong>Compassion</strong><div style="color:var(--muted);font-size:14px">We take the time needed — this matters to everyone involved.</div></div>
+        <div class="value-small"><strong>Quality & honesty</strong><div style="color:var(--muted);font-size:14px">Durable materials and clear, fair pricing.</div></div>
+      </div>
+    </section>
+
+    <!-- Video / Instagram placeholders -->
     <section aria-labelledby="videosHeading" style="margin-top:30px">
-      <h2 id="videosHeading">Guides & Tutorials</h2>
-      <p style="color:var(--muted); margin-bottom:12px">Short videos on caring for memorials, choosing stone, and our process. (You can add Instagram or YouTube links here later.)</p>
+      <h2 id="videosHeading">Guides & tutorials</h2>
+      <p style="color:var(--muted); margin-bottom:12px">Short videos showing care, maintenance, and our processes. (Add YouTube or Instagram embeds later.)</p>
+
       <div class="video-row">
-        <div class="video-placeholder">Video placeholder 1 — add embed URL later</div>
-        <div class="video-placeholder">Video placeholder 2 — add embed URL later</div>
-        <div class="video-placeholder">Video placeholder 3 — add embed URL later</div>
+        <div class="video-placeholder">Video placeholder 1 — embed code later</div>
+        <div class="video-placeholder">Video placeholder 2 — embed code later</div>
+        <div class="video-placeholder">Video placeholder 3 — embed code later</div>
       </div>
     </section>
 
@@ -249,13 +290,22 @@
   <!-- FOOTER -->
   <footer>
     <div class="meta">
-      <div>David Gynn Memorials — Family run in Cornwall · Over 40 years' trusted work</div>
+      <div>
+        David Gynn Memorials — Family run in Cornwall · Over 40 years' trusted masonry
+        <div style="color:var(--muted); font-size:13px; margin-top:6px">Roydon Road, Launceston · PL15 8DR · 01566 773810</div>
+      </div>
       <div style="text-align:right">© <span id="year"></span></div>
     </div>
   </footer>
 
   <script>
+    // Set year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll if user clicks a service card linking to a local page anchor
+    // (links are currently to separate pages, e.g. memorials.html#inscriptions)
+    // When those pages exist with matching anchors, the browser will jump to them.
+    // If you later want in-page auto-scroll from home to a section, we can add logic to detect query params or hash.
   </script>
 </body>
 </html>
