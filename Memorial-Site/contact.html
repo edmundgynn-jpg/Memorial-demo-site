@@ -3,41 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>David Gynn Memorials - Contact</title>
+  <title>Contact Us - David Gynn Memorials</title>
   <link rel="stylesheet" href="assets/css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="hero" style="background-image: url('assets/images/contact-banner.jpg');">
-    <div class="overlay"><h1>Contact Us</h1></div>
+
+  <!-- HERO -->
+  <header class="hero" style="background-image: url('assets/images/hero-contact.jpg');">
+    <div class="hero-text">
+      <h1>Contact Us</h1>
+      <p>Here to help with any enquiries</p>
+    </div>
   </header>
 
-  <section>
+  <!-- INFO -->
+  <section class="page-intro">
     <h2>Get in Touch</h2>
-    <p>Email: info@davidgynnmemorials.co.uk</p>
-    <p>Phone: 01234 567890</p>
-    <p>Address: Launceston, Cornwall</p>
+    <p>
+      The Monumental Works<br>
+      Roydon Road, Launceston, Cornwall, PL15 8DR<br>
+      Phone: 01566 773810<br>
+      Email: info@davidgynnmemorials.co.uk
+    </p>
   </section>
 
-  <section>
-    <h2>Contact Form</h2>
+  <!-- CONTACT FORM -->
+  <section class="contact-form">
     <form>
-      <label>Name:<br><input type="text" name="name" required></label><br>
-      <label>Email:<br><input type="email" name="email" required></label><br>
-      <label>Message:<br><textarea name="message" required></textarea></label><br>
-      <button type="submit">Send</button>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message"></textarea>
+      <button type="submit" class="btn">Send</button>
     </form>
-    <p>[Later: connect this to Formspree or Netlify]</p>
   </section>
 
-  <section>
-    <h2>Map</h2>
-    <p>[Map placeholder here]</p>
-  </section>
+  <!-- BACK BUTTON -->
+  <div class="back-home">
+    <a href="index.html" class="btn">← Back to Home</a>
+  </div>
 
   <footer>
     <p>&copy; 2025 David Gynn Memorials</p>
-    <a href="index.html">Back to Home</a>
   </footer>
+
 </body>
 </html>
