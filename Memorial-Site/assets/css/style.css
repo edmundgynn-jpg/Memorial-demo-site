@@ -1,75 +1,178 @@
-body {
+/* Reset some defaults */
+* {
   margin: 0;
-  font-family: 'Lato', sans-serif;
-  color: #333;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
   line-height: 1.6;
+  color: #333;
+  background: #fafafa;
 }
 
-h1, h2 {
-  font-family: 'Cinzel', serif;
-  margin-bottom: 0.5em;
-}
-
+/* HERO SECTIONS */
 .hero {
   position: relative;
   background-size: cover;
   background-position: center;
-  color: white;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 100px 20px;
-}
-.hero .overlay {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 40px;
-}
-.hero h1 {
-  font-size: 2.5em;
-}
-.hero-buttons .btn {
-  display: inline-block;
-  margin: 10px;
-  padding: 10px 20px;
-  background: #555;
   color: white;
-  text-decoration: none;
-  border-radius: 5px;
-}
-.hero-buttons .btn:hover {
-  background: #333;
 }
 
-.about, .services, .values, .media, section {
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5); /* dark overlay for text readability */
+}
+
+.hero-text {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+/* BUTTONS */
+.btn, .btn-small {
+  display: inline-block;
+  background: #444;
+  color: white;
+  padding: 10px 20px;
+  margin: 5px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.btn:hover, .btn-small:hover {
+  background: #666;
+}
+
+.btn-small {
+  font-size: 0.9rem;
+  padding: 6px 14px;
+}
+
+/* WELCOME / INTRO TEXT */
+.welcome, .page-intro {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+.welcome h2, .page-intro h2 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+/* SERVICES GRID */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 40px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.service {
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.service img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.service h3 {
+  margin: 10px 0;
+  font-size: 1.2rem;
+}
+
+/* CORE VALUES */
+.core-values {
+  background: #eee;
   padding: 40px 20px;
   max-width: 900px;
   margin: auto;
 }
 
-.services .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
-}
-.services .card {
-  display: block;
-  background: #eee;
-  padding: 30px;
+.core-values h2 {
   text-align: center;
-  border-radius: 8px;
-  text-decoration: none;
-  color: #333;
-}
-.services .card:hover {
-  background: #ddd;
+  margin-bottom: 1rem;
 }
 
+/* CONTACT FORM */
+.contact-form {
+  padding: 40px 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.contact-form button {
+  border: none;
+  cursor: pointer;
+}
+
+/* BACK TO HOME */
+.back-home {
+  text-align: center;
+  margin: 30px 0;
+}
+
+/* FOOTER */
 footer {
-  background: #222;
-  color: #ddd;
   text-align: center;
   padding: 20px;
+  background: #222;
+  color: white;
   margin-top: 40px;
 }
-footer a {
-  color: #fff;
-  margin-left: 10px;
+
+/* RESPONSIVENESS */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
 }
