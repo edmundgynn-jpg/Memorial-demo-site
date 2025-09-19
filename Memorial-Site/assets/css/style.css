@@ -1,178 +1,113 @@
-/* Reset some defaults */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* assets/css/style.css
+   David Gynn Memorials — Brochure site styling
+*/
+
+/* --- Basic reset & fonts --- */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color:#223; background:#fbfbf9;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  color: #333;
-  background: #fafafa;
+/* --- Header / nav --- */
+.header {
+  background: linear-gradient(180deg,#12321f,#0c1a14);
+  color:#fff;
+  position:sticky; top:0; z-index:1000;
+}
+.header .bar {
+  max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:16px; padding:12px 18px;
+}
+.brand{
+  font-family: "Cinzel", serif; font-weight:700; letter-spacing:.6px; font-size:20px;
+}
+.nav{margin-left:auto; display:flex; gap:10px; align-items:center}
+.nav a{color:rgba(255,255,255,0.92); padding:8px 12px; border-radius:8px; font-weight:600; text-decoration:none}
+.nav a.active{background: rgba(255,255,255,0.06)}
+
+/* --- Hero --- */
+.hero{
+  position:relative; display:flex; align-items:center; justify-content:center; text-align:center;
+  min-height:56vh; background-size:cover; background-position:center;
+  color:#fff; overflow:hidden;
+}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.42), rgba(0,0,0,0.36));}
+.hero-text{position:relative; z-index:2; max-width:1000px; padding:28px}
+.hero h1{font-family:'Cinzel', serif; font-size:clamp(26px,4.5vw,44px); margin-bottom:8px}
+.hero p{font-size:16px; margin-bottom:14px; color:rgba(255,255,255,0.95)}
+
+/* Hero buttons */
+.hero-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{background:#2f3536;color:#fff;padding:11px 18px;border-radius:10px;text-decoration:none;font-weight:700}
+.btn:hover{background:#56615a}
+.btn-ghost{background:transparent;border:2px solid rgba(255,255,255,0.14);color:#fff;padding:9px 14px;border-radius:10px}
+
+/* --- Main container --- */
+.container{max-width:1100px;margin:36px auto;padding:0 18px}
+
+/* --- Welcome / intro text --- */
+.welcome, .page-intro {max-width:920px;margin:16px auto;padding:20px;text-align:left; color:#223}
+.welcome h2, .page-intro h2{font-family:'Cinzel',serif;margin-bottom:10px}
+
+/* --- Services grid on home --- */
+.services-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; margin-top:22px}
+.service{background:#fff;padding:16px;border-radius:10px;box-shadow:0 10px 26px rgba(30,36,34,0.06); display:flex; flex-direction:column; align-items:stretch; min-height:220px}
+.service .img-placeholder{height:120px;border-radius:8px;background:linear-gradient(180deg,#e9e9e9,#f4f4f4);display:flex;align-items:center;justify-content:center;color:#8a8a8a;margin-bottom:12px;font-size:13px}
+.service h3{font-family:'Cinzel',serif;margin:0 0 8px}
+.service p{color:#5b6760;margin-bottom:12px}
+.btn-small{background:#2f3536;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:700;align-self:flex-start}
+
+/* --- Core values: staggered layout with Celtic divider --- */
+.core-values{padding:30px 18px; margin-top:26px; max-width:1100px; margin-left:auto;margin-right:auto}
+.core-values .values-wrapper{display:grid; grid-auto-rows:auto; gap:28px; align-items:center}
+.value{
+  display:flex; gap:18px; align-items:center; background:#fff; padding:18px;border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,0.04);
+}
+.value .text{flex:1}
+.value.left{flex-direction:row}
+.value.right{flex-direction:row-reverse; text-align:right}
+.value h3{font-family:'Cinzel',serif;margin-bottom:6px}
+.value p{color:#4b5a53}
+
+/* Celtic rope divider between values (subtle) */
+.celtic-divider{
+  height:28px; display:flex; align-items:center; justify-content:center; opacity:0.18; margin:8px 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 28'><path d='M0 14 C40 0 120 0 160 14 C200 28 280 28 320 14 C360 0 440 0 480 14 C520 28 600 28' stroke='%236b7f6a' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat:repeat-x; background-position:center; background-size:auto 28px;
 }
 
-/* HERO SECTIONS */
-.hero {
-  position: relative;
-  background-size: cover;
-  background-position: center;
-  height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-}
+/* --- Service panel (memorials page) full-width sections --- */
+.service-panel{min-height:72vh; display:flex; align-items:center; padding:34px 18px; position:relative}
+.service-panel .panel-inner{max-width:1100px;margin:0 auto; display:grid; grid-template-columns:1fr 360px; gap:20px; align-items:start}
+.service-panel .panel-inner .desc{background:#fff;padding:18px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.04)}
+.service-panel .panel-inner .gallery{background:transparent;padding:6px}
+.gallery-scroll{display:flex; gap:12px; overflow:auto; padding:8px 4px}
+.gallery-item{min-width:220px;height:150px;border-radius:8px;background:linear-gradient(180deg,#e9e9e9,#f3f3f3);display:flex;align-items:center;justify-content:center; color:#777; font-size:13px; box-shadow:0 6px 14px rgba(0,0,0,0.05)}
+.gallery-controls{display:flex; gap:8px; margin-top:12px}
 
-.hero::after {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5); /* dark overlay for text readability */
-}
+/* --- Floating buttons --- */
+.floating-buttons{position:fixed; right:18px; bottom:18px; display:flex; flex-direction:column; gap:10px; z-index:1200}
+.fab{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#222;color:#fff;text-decoration:none;box-shadow:0 10px 28px rgba(0,0,0,0.18); font-size:18px}
+.fab.contact{background:#2f6b54}
+.fab:hover{transform:translateY(-3px)}
 
-.hero-text {
-  position: relative;
-  z-index: 1;
-  max-width: 800px;
-  padding: 20px;
-}
+/* --- Back to home that follows scroll (top-left small) --- */
+.back-fab{position:fixed; left:16px; top:18px; z-index:1200}
+.back-fab a{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.94);color:#1a2b22;padding:8px 12px;border-radius:26px;box-shadow:0 6px 18px rgba(0,0,0,0.08);text-decoration:none;font-weight:700}
 
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
+/* --- Contact form and map placeholders --- */
+.contact-form{max-width:700px;margin:18px auto;padding:18px;background:#fff;border-radius:12px;box-shadow:0 10px 26px rgba(0,0,0,0.04)}
+.contact-form input,.contact-form textarea{width:100%;padding:10px;margin-bottom:10px;border:1px solid #d6d6d6;border-radius:6px}
 
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-}
+/* --- Footer --- */
+footer{background:#0e1410;color:#dbe6de;padding:20px 18px;text-align:center;margin-top:40px}
 
-/* BUTTONS */
-.btn, .btn-small {
-  display: inline-block;
-  background: #444;
-  color: white;
-  padding: 10px 20px;
-  margin: 5px;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background 0.3s;
-}
-
-.btn:hover, .btn-small:hover {
-  background: #666;
-}
-
-.btn-small {
-  font-size: 0.9rem;
-  padding: 6px 14px;
-}
-
-/* WELCOME / INTRO TEXT */
-.welcome, .page-intro {
-  padding: 40px 20px;
-  max-width: 900px;
-  margin: auto;
-  text-align: center;
-}
-
-.welcome h2, .page-intro h2 {
-  margin-bottom: 1rem;
-  font-size: 1.8rem;
-}
-
-/* SERVICES GRID */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  padding: 40px 20px;
-  max-width: 1100px;
-  margin: auto;
-}
-
-.service {
-  background: white;
-  padding: 20px;
-  border-radius: 6px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  text-align: center;
-}
-
-.service img {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-  border-radius: 4px;
-}
-
-.service h3 {
-  margin: 10px 0;
-  font-size: 1.2rem;
-}
-
-/* CORE VALUES */
-.core-values {
-  background: #eee;
-  padding: 40px 20px;
-  max-width: 900px;
-  margin: auto;
-}
-
-.core-values h2 {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-/* CONTACT FORM */
-.contact-form {
-  padding: 40px 20px;
-  max-width: 600px;
-  margin: auto;
-}
-
-.contact-form form {
-  display: flex;
-  flex-direction: column;
-}
-
-.contact-form input,
-.contact-form textarea {
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.contact-form button {
-  border: none;
-  cursor: pointer;
-}
-
-/* BACK TO HOME */
-.back-home {
-  text-align: center;
-  margin: 30px 0;
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #222;
-  color: white;
-  margin-top: 40px;
-}
-
-/* RESPONSIVENESS */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2rem;
-  }
-  .hero p {
-    font-size: 1rem;
-  }
+/* --- Responsive --- */
+@media(max-width:920px){
+  .service-panel .panel-inner{grid-template-columns:1fr}
+  .value.right{ text-align:left; flex-direction:row}
+  .back-fab{left:10px; top:10px}
+  .fab{width:46px;height:46px;font-size:16px}
 }

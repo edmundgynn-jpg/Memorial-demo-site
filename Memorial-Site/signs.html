@@ -1,37 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Signs & Engraving - David Gynn Memorials</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Signs & Engraving — David Gynn Memorials</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lato&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-  <!-- HERO -->
-  <header class="hero" style="background-image: url('assets/images/hero-signs.jpg');">
-    <div class="hero-text">
-      <h1>Signs & Engraving</h1>
-      <p>Durable and elegant lettering in stone</p>
+  <header class="header">
+    <div class="bar">
+      <div class="brand">David Gynn Memorials</div>
+      <nav class="nav" aria-label="Main nav">
+        <a href="index.html">Home</a>
+        <a href="memorials.html">Memorials</a>
+        <a href="signs.html" class="active">Signs &amp; Engraving</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
   </header>
 
-  <!-- INTRO -->
-  <section class="page-intro">
-    <p>
-      We produce custom slate house signs and offer engraving for stonework brought to us. 
-      Each piece is cut with accuracy and finished by hand for clarity and durability.
-    </p>
-  </section>
+  <div class="back-fab"><a href="index.html">← Home</a></div>
 
-  <!-- BACK BUTTON -->
-  <div class="back-home">
-    <a href="index.html" class="btn">← Back to Home</a>
+  <main>
+    <section class="hero" data-bg="assets/images/hero-signs.jpg" style="min-height:36vh;">
+      <div class="hero-text"><h1>Signs &amp; Engraving</h1><p>Custom slate signs and engraving for stonework</p></div>
+    </section>
+
+    <section class="page-intro container">
+      <p>We produce slate house signs, plaques and engravings. Finishes include sandblasted lettering, recessed engraving and repainting where appropriate. We also engrave stone customers bring in — we’ll advise on the best finish for each material.</p>
+    </section>
+
+    <section class="container" style="margin-top:18px">
+      <h2>Standard slate signs</h2>
+      <p>Durable slate signs in a range of sizes — suitable for homes, small businesses and gates.</p>
+
+      <h2 style="margin-top:18px">Custom engraving</h2>
+      <p>We take on bespoke engraving jobs and can match styles to existing memorials or signage.</p>
+
+      <h2 style="margin-top:18px">Design-your-sign (future)</h2>
+      <p>Placeholder for the sign designer app — coming later as a mobile-friendly tool.</p>
+    </section>
+  </main>
+
+  <div class="floating-buttons">
+    <a class="fab" href="index.html" title="Home">🏠</a>
+    <a class="fab contact" href="contact.html" title="Contact">✉️</a>
   </div>
 
   <footer>
-    <p>&copy; 2025 David Gynn Memorials</p>
+    <div style="max-width:1100px;margin:0 auto;padding:16px;color:#dbe6de">© David Gynn Memorials</div>
   </footer>
 
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

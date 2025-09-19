@@ -1,77 +1,132 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>David Gynn Memorials</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>David Gynn Memorials — Home</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body class="is-home">
 
-  <!-- HERO -->
-  <header class="hero" style="background-image: url('assets/images/hero-home.jpg');">
+  <!-- Header -->
+  <header class="header">
+    <div class="bar">
+      <div class="brand">David Gynn Memorials</div>
+      <nav class="nav" aria-label="Main nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="memorials.html">Memorials</a>
+        <a href="signs.html">Signs &amp; Engraving</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO (data-bg used by JS to refresh image automatically) -->
+  <header class="hero" data-bg="assets/images/hero-home.jpg" role="banner" aria-label="Welcome">
     <div class="hero-text">
-      <h1>Welcome to David Gynn Memorials</h1>
-      <p>Crafting lasting tributes with care and precision</p>
+      <h1>Family memorial masonry — trusted craft for over 40 years</h1>
+      <p>David trained for ten years then took the business on — today Harry &amp; Eddie continue the craft with care and respect.</p>
       <div class="hero-buttons">
-        <a href="memorials.html" class="btn">Memorials</a>
-        <a href="signs.html" class="btn">Signs & Engraving</a>
-        <a href="contact.html" class="btn">Contact Us</a>
+        <a class="btn" href="memorials.html">Memorials</a>
+        <a class="btn" href="signs.html">Signs &amp; Engraving</a>
+        <a class="btn-ghost" href="contact.html">Contact Us</a>
       </div>
     </div>
   </header>
 
-  <!-- PERSONAL WELCOME -->
-  <section class="welcome">
-    <h2>A Family Tradition of Excellence</h2>
-    <p>
-      With over 40 years in the trade, David Gynn Memorials is a family-run business based in Launceston, Cornwall. 
-      Founded after David’s decade of experience in monumental masonry, the company is now carried forward by his sons Harry and Eddie. 
-      We serve churches, cemeteries, and families across Cornwall and Devon, combining traditional craftsmanship with modern techniques.
-    </p>
-  </section>
+  <!-- Personal welcome (longer text below hero) -->
+  <main>
+    <section class="welcome container">
+      <h2>A family tradition of excellence</h2>
+      <p>Based in Launceston, Cornwall, David Gynn Memorials is a family-run workshop delivering compassionate, quality memorials for churches, cemeteries and private plots across Cornwall & Devon. We combine traditional skills with modern tooling and clear, honest advice.</p>
+    </section>
 
-  <!-- SERVICES GRID -->
-  <section class="services-grid">
-    <div class="service">
-      <img src="assets/images/service-memorials.jpg" alt="Memorials">
-      <h3>Headstones</h3>
-      <p>Crafted in granite, slate, and natural stones.</p>
-      <a href="memorials.html#headstones" class="btn-small">Learn More</a>
-    </div>
-    <div class="service">
-      <img src="assets/images/service-tablets.jpg" alt="Tablets & Vases">
-      <h3>Tablets & Vases</h3>
-      <p>Beautiful smaller tributes to suit all needs.</p>
-      <a href="memorials.html#tablets" class="btn-small">Learn More</a>
-    </div>
-    <div class="service">
-      <img src="assets/images/service-inscriptions.jpg" alt="Inscriptions">
-      <h3>Inscriptions</h3>
-      <p>Adding new lettering to existing memorials with care.</p>
-      <a href="memorials.html#inscriptions" class="btn-small">Learn More</a>
-    </div>
-    <div class="service">
-      <img src="assets/images/service-refurbishing.jpg" alt="Refurbishing">
-      <h3>Refurbishing</h3>
-      <p>Cleaning, repair, and re-lettering services.</p>
-      <a href="memorials.html#refurbishing" class="btn-small">Learn More</a>
-    </div>
-  </section>
+    <!-- Services grid -->
+    <section class="services-grid container" aria-label="Our services">
+      <div class="service">
+        <div class="img-placeholder" data-filename="assets/images/service-headstones.jpg">Headstones image</div>
+        <h3>Headstones</h3>
+        <p>Black & grey granites and Welsh slate options — designed to meet parish rules and last generations.</p>
+        <a class="btn-small" href="memorials.html#headstones">Learn more</a>
+      </div>
 
-  <!-- CORE VALUES -->
-  <section class="core-values">
-    <h2>Our Values</h2>
-    <p><strong>Craftsmanship with Care</strong> – Every memorial is made with dignity, precision, and respect.</p>
-    <p><strong>Tradition & Experience</strong> – Over 40 years’ knowledge passed through the family.</p>
-    <p><strong>Personal Service</strong> – We work closely with families to create something meaningful.</p>
-    <p><strong>Community & Heritage</strong> – Proudly serving Cornwall and Devon for generations.</p>
-  </section>
+      <div class="service">
+        <div class="img-placeholder" data-filename="assets/images/service-tablets.jpg">Tablets & vases image</div>
+        <h3>Tablets & Vases</h3>
+        <p>Selection of tablets, cremation plaques and vases to complement memorials.</p>
+        <a class="btn-small" href="memorials.html#tablets">Learn more</a>
+      </div>
 
-  <!-- FOOTER -->
+      <div class="service">
+        <div class="img-placeholder" data-filename="assets/images/service-inscriptions.jpg">Inscriptions image</div>
+        <h3>Inscriptions</h3>
+        <p>Sandblasted and precision-cut lettering, with repainting where the stone accepts it.</p>
+        <a class="btn-small" href="memorials.html#inscriptions">Learn more</a>
+      </div>
+
+      <div class="service">
+        <div class="img-placeholder" data-filename="assets/images/service-refurbishing.jpg">Refurbishing image</div>
+        <h3>Refurbishing</h3>
+        <p>Cleaning, re-lettering and careful repair work to preserve the stone’s character.</p>
+        <a class="btn-small" href="memorials.html#refurbishing">Learn more</a>
+      </div>
+    </section>
+
+    <!-- Core Values with Celtic divider -->
+    <section class="core-values" aria-labelledby="valuesHeading">
+      <h2 id="valuesHeading" style="text-align:center;margin-bottom:18px">Our Values</h2>
+
+      <div class="values-wrapper">
+        <div class="value left">
+          <div class="text">
+            <h3>Craftsmanship with Care</h3>
+            <p>Every memorial is created with dignity and careful attention to detail, recognising each family's story.</p>
+          </div>
+        </div>
+
+        <div class="celtic-divider" aria-hidden="true"></div>
+
+        <div class="value right">
+          <div class="text">
+            <h3>Tradition & Experience</h3>
+            <p>David trained for ten years before buying the business — combined experience of four decades gives trusted expertise.</p>
+          </div>
+        </div>
+
+        <div class="celtic-divider" aria-hidden="true"></div>
+
+        <div class="value left">
+          <div class="text">
+            <h3>Personal Service</h3>
+            <p>We listen first — personal consultations, clear advice, and honest pricing throughout the process.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Media / videos placeholder -->
+    <section class="container" style="margin-top:22px">
+      <h2 style="text-align:center">Guides & Demonstrations</h2>
+      <p style="text-align:center;color:#6b756f">Placeholder area for short videos or Instagram embeds.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px">
+        <div class="img-placeholder">Video 1</div>
+        <div class="img-placeholder">Video 2</div>
+        <div class="img-placeholder">Video 3</div>
+      </div>
+    </section>
+
+  </main>
+
   <footer>
-    <p>&copy; 2025 David Gynn Memorials</p>
+    <div style="max-width:1100px;margin:0 auto;padding:16px;color:#dbe6de">
+      David Gynn Memorials — The Monumental Works · Roydon Road · Launceston · PL15 8DR · 01566 773810
+    </div>
   </footer>
 
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
